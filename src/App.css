@@ -22,7 +22,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  transform: translate(-50%, -50%); /* Center the select horizontally */
+  transform: translate(-50%, -50%); /* Center the select horizontally (test)*/
   position: absolute;  /* Position absolutely within the container */
   top: 20%;
   left: 50%;           /* Center horizontally */

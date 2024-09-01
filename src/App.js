@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import Logo from './classroomPhoto.jpg';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <img src={Logo} alt="Error loading image." className="logoID"></img>
+      <header className="overlay">
+        <div class="input-group mb-3 custom-width">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Choose a school:</label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option value="okstate">Oklahoma State University</option>
+          </select>
+        </div>
       </header>
     </div>
+
   );
 }
 

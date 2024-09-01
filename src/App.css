@@ -2,9 +2,11 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.logoID {
+  height: 40vh;
+  object-fit: cover;
+  width: 100%;
+  filter: brightness(50%);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,15 +15,18 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.overlay {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  transform: translate(-50%, -50%); /* Center the select horizontally */
+  position: absolute;  /* Position absolutely within the container */
+  top: 20%;
+  left: 50%;           /* Center horizontally */
+          /* Ensure the select appears above the image */
 }
 
 .App-link {
@@ -35,4 +40,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.custom-width {
+  max-width: 500px; /* Adjust the width as needed */
+  margin: 0 auto; /* Centers the element */
+
+}
+
+.custom-select {
+  width: 100%; /* Make sure the select takes up the full width of the parent */
 }

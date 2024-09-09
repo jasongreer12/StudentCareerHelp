@@ -1,9 +1,14 @@
-.App {
-  text-align: center;
+#selectContainer {
+  background-color: #f0ece2;
+  max-width: fit-content;
+  margin-top: 40px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  min-height: 40vh;
 }
 
 .logoID {
-  height: 40vh;
+  height: 20vh;
   object-fit: cover;
   width: 100%;
   filter: brightness(50%);
@@ -15,39 +20,29 @@
   }
 }
 
-.overlay {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  transform: translate(-50%, -50%); /* Center the select horizontally (test)*/
-  position: absolute;  /* Position absolutely within the container */
-  top: 20%;
-  left: 50%;           /* Center horizontally */
-          /* Ensure the select appears above the image */
+.form-label {
+  font-size: large !important;
+  font-weight: 700;
 }
+
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.custom-width {
-  max-width: 500px; /* Adjust the width as needed */
-  margin: 0 auto; /* Centers the element */
-
-}
-
-.custom-select {
-  width: 100%; /* Make sure the select takes up the full width of the parent */
+#appTitle {
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-weight: bold;
+  text-transform: lowercase;
+  text-align: center;
+  font-size: 49px;
+  letter-spacing: 4px;
+  word-spacing: 6px;
+  color: rgb(255, 255, 255);
+  text-shadow: rgb(0, 0, 0) 2px 5px 11px;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  z-index: 1; /* Ensure title appears above the logo */
 }

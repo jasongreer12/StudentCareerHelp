@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT CAREER HELPER</title>
+    <style>
+        h3{
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: darkorange;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            height: 100%;
+            margin: auto;
+            background: black;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: white;
+        }
+        label {
+            display: block;
+            margin: 20px 0 10px;
+            color: white;
+        }
+        select, ul {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #e0e0e0;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .job-details {
+            background: #f0f0f0;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>STUDENT CAREER HELPER</h1>
+    <h3>This tool is designed to allow users to choose their desired major and job field to view recommended classes, salary, job descriptions, internships, and job information.</h3>
+    <div class="container">
+        <h1>CHOOSE A STATE</h1>
+        <label for="stateSelect">Choose a state:</label>
+        <select id="stateSelect" onchange="showColleges()">
+            <option value="">SELECT A STATE TO VIEW THE TOP 5 SCHOOLS...</option>
+            <option value="California">CALIFORNIA</option>
+            <option value="Texas">TEXAS</option>
+            <option value="New York">NEW YORK</option>
+            <option value="Florida">FLORIDA</option>
+            <option value="Illinois">ILLINOIS</option>
+            <option value="Oklahoma">OKLAHOMA</option>
+        </select>
+
+        <h1>TOP 5 COLLEGES</h1>
+        <select id="collegeSelect" onchange="showMajors()">
+            <option value="">SELECT A COLLEGE...</option>
+        </select>
+
+        <h1>TOP 5 MAJORS</h1>
+        <select id="majorSelect" onchange="showJobs()">
+            <option value="">SELECT A MAJOR...</option>
+        </select>
+
+        <h1>TOP 5 MOST POPULAR JOB FIELDS OR ROLES IN YOUR PREFERRED MAJOR</h1>
+        <ul id="jobList"></ul>
+
+        <!-- Section to display job details -->
+        <div id="jobDetails" class="job-details"></div>
+    </div>
+
+    <script>
+        const colleges = {
+            'Oklahoma': ['OKLAHOMA STATE UNIVERSITY', 'University of Oklahoma', 'OCU', 'University of Central Oklahoma', 'University of Science and Arts of Oklahoma']
+        };
+
+        const majors = {
+            'OKLAHOMA STATE UNIVERSITY': ['Business', 'Agriculture', 'Nursing', 'Mechanical Engineering', 'COMPUTER SCIENCE']
+        };
+
+                                     const jobs = {
+                                         'COMPUTER SCIENCE': [
+                                             {
+                                                 title: 'SOFTWARE DEVELOPER',
+                                                 description: 'The primary role of a software developer is to develop and maintain software applications. The list of recommended class to take at Oklahoma State University are below. Click on the class to view its description on the OSU website.',
+                                                 classes: [
+                                                     { code: 'MATHS 2144 - CALCULUS 1', link: 'http://catalog.okstate.edu/search/?P=MATH%202144' },
+                                                     { code: 'COMPUTER SCIENCE 1(A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113' },
+                                                     { code: 'CS 1113 - Computer Science I (A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113 ' },
+                                                     { code: 'General Education Courses' },
+                                                     { code: 'MATHS 2153 - Calculus II (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%202153' },
+                                                     { code: 'CS 2133 - Computer Science II', link: 'http://catalog.okstate.edu/search/?P=CS%202133' },
+                                                     { code: 'General Education Courses' },
+                                                     { code: 'CS 2433 - C/C++ Programming', link: 'http://catalog.okstate.edu/search/?P=CS%202433' },
+                                                     { code: 'CS 3653 - Discrete Mathematics for Computer Science', link: 'http://catalog.okstate.edu/search/?P=CS%203653' },
+                                                     { code: 'MATHS 2163 - Calculus III', link: 'http://catalog.okstate.edu/search/?P=MATH%202163' },
+                                                     { code: 'General Education Courses' },
+                                                     { code: 'CS 3353- Data Structures and Algorithm Analysis I', link: 'http://catalog.okstate.edu/search/?P=CS%203353' },
+                                                     { code: 'CS 3443 - Computer Systems', link: 'http://catalog.okstate.edu/search/?P=CS%203443' },
+                                                     { code: 'MATHS 3013 - Linear Algebra (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%203013' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 4243 - Introduction to Computer Security', link: 'http://catalog.okstate.edu/search/?P=CS%204243' },
+                                                     { code: 'STAT 4033 - Engineering Statistics', link: 'http://catalog.okstate.edu/search/?P=STAT%204033' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 3613 - Theoretical Foundations of Computing', link: 'http://catalog.okstate.edu/search/?P=CS%203613' },
+                                                     { code: '3 hours Upper-Division CS Elective' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 3363 - Organization of Programming Languages', link: 'http://catalog.okstate.edu/search/?P=CS%203363' },
+                                                     { code: 'CS 3513 - Numerical Methods for Digital Computers', link: 'http://catalog.okstate.edu/search/?P=CS%203513' },
+                                                     { code: '3 hours Upper-Division CS Elective, CS 4273 suggested', link: 'http://catalog.okstate.edu/search/?P=CS%204273' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 4323 - Design and Implementation of Operating Systems I', link: 'http://catalog.okstate.edu/search/?P=CS%204323' },
+                                                     { code: 'CS 4883 - Social Issues in Computing', link: 'http://catalog.okstate.edu/search/?P=CS%204883' },
+                                                     { code: 'CS 4983 - Senior Capstone Project', link: 'http://catalog.okstate.edu/search/?P=CS%204983' },
+                                                     { code: '3 hours Upper-Division CS Elective' },
+                                                     { code: 'Major, College, and Elective courses' }
+                                                 ]
+                                             },
+                                             {
+                                                 title: 'DATA SCIENTIST',
+                                                 description: 'Analyze and interpret complex data to help companies make decisions.',
+                                                 classes: [
+                                                     { code: 'MATHS 2144 - CALCULUS 1', link: 'http://catalog.okstate.edu/search/?P=MATH%202144' },
+                                                     { code: 'COMPUTER SCIENCE 1(A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113' },
+                                                     { code: 'CS 1113 - Computer Science I (A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113 ' },
+                                                     { code: 'General Education Courses' },
+                                                     { code: 'MATHS 2153 - Calculus II (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%202153' },
+                                                     { code: 'CS 2133 - Computer Science II', link: 'http://catalog.okstate.edu/search/?P=CS%202133' },
+                                                     { code: 'General Education Courses' },
+                                                     { code: 'CS 2433 - C/C++ Programming', link: 'http://catalog.okstate.edu/search/?P=CS%202433' },
+                                                     { code: 'CS 3653 - Discrete Mathematics for Computer Science', link: 'http://catalog.okstate.edu/search/?P=CS%203653' },
+                                                     { code: 'MATHS 2163 - Calculus III', link: 'http://catalog.okstate.edu/search/?P=MATH%202163' },
+                                                     { code: 'General Education Courses' },
+                                                     { code: 'CS 3353- Data Structures and Algorithm Analysis I', link: 'http://catalog.okstate.edu/search/?P=CS%203353' },
+                                                     { code: 'CS 3443 - Computer Systems', link: 'http://catalog.okstate.edu/search/?P=CS%203443' },
+                                                     { code: 'MATHS 3013 - Linear Algebra (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%203013' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 4243 - Introduction to Computer Security', link: 'http://catalog.okstate.edu/search/?P=CS%204243' },
+                                                     { code: 'STAT 4033 - Engineering Statistics', link: 'http://catalog.okstate.edu/search/?P=STAT%204033' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 3613 - Theoretical Foundations of Computing', link: 'http://catalog.okstate.edu/search/?P=CS%203613' },
+                                                     { code: '3 hours Upper-Division CS Elective' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 3363 - Organization of Programming Languages', link: 'http://catalog.okstate.edu/search/?P=CS%203363' },
+                                                     { code: 'CS 3513 - Numerical Methods for Digital Computers', link: 'http://catalog.okstate.edu/search/?P=CS%203513' },
+                                                     { code: '3 hours Upper-Division CS Elective, CS 4273 suggested', link: 'http://catalog.okstate.edu/search/?P=CS%204273' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 4323 - Design and Implementation of Operating Systems I', link: 'http://catalog.okstate.edu/search/?P=CS%204323' },
+                                                     { code: 'CS 4883 - Social Issues in Computing', link: 'http://catalog.okstate.edu/search/?P=CS%204883' },
+                                                     { code: 'CS 4983 - Senior Capstone Project', link: 'http://catalog.okstate.edu/search/?P=CS%204983' },
+                                                     { code: '3 hours Upper-Division CS Elective' },
+                                                     { code: 'Major, College, and Elective courses' }
+                                                 ]
+                                             },
+                                             {
+                                                 title: 'CYBERSECURITY ANALYST',
+                                                 description: 'Protect systems and networks from cyber threats.',
+                                                 classes: [
+                                                     { code: 'MATHS 2144 - CALCULUS 1', link: 'http://catalog.okstate.edu/search/?P=MATH%202144' },
+                                                     { code: 'COMPUTER SCIENCE 1(A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113' },
+                                                     { code: 'CS 1113 - Computer Science I (A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113 ' },
+                                                     { code: 'General Education Courses' },
+                                                     { code: 'MATHS 2153 - Calculus II (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%202153' },
+                                                     { code: 'CS 2133 - Computer Science II', link: 'http://catalog.okstate.edu/search/?P=CS%202133' },
+                                                     { code: 'General Education Courses' },
+                                                     { code: 'CS 2433 - C/C++ Programming', link: 'http://catalog.okstate.edu/search/?P=CS%202433' },
+                                                     { code: 'CS 3653 - Discrete Mathematics for Computer Science', link: 'http://catalog.okstate.edu/search/?P=CS%203653' },
+                                                     { code: 'MATHS 2163 - Calculus III', link: 'http://catalog.okstate.edu/search/?P=MATH%202163' },
+                                                     { code: 'General Education Courses' },
+                                                     { code: 'CS 3353- Data Structures and Algorithm Analysis I', link: 'http://catalog.okstate.edu/search/?P=CS%203353' },
+                                                     { code: 'CS 3443 - Computer Systems', link: 'http://catalog.okstate.edu/search/?P=CS%203443' },
+                                                     { code: 'MATHS 3013 - Linear Algebra (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%203013' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 4243 - Introduction to Computer Security', link: 'http://catalog.okstate.edu/search/?P=CS%204243' },
+                                                     { code: 'STAT 4033 - Engineering Statistics', link: 'http://catalog.okstate.edu/search/?P=STAT%204033' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 3613 - Theoretical Foundations of Computing', link: 'http://catalog.okstate.edu/search/?P=CS%203613' },
+                                                     { code: '3 hours Upper-Division CS Elective' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 3363 - Organization of Programming Languages', link: 'http://catalog.okstate.edu/search/?P=CS%203363' },
+                                                     { code: 'CS 3513 - Numerical Methods for Digital Computers', link: 'http://catalog.okstate.edu/search/?P=CS%203513' },
+                                                     { code: '3 hours Upper-Division CS Elective, CS 4273 suggested', link: 'http://catalog.okstate.edu/search/?P=CS%204273' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 4323 - Design and Implementation of Operating Systems I', link: 'http://catalog.okstate.edu/search/?P=CS%204323' },
+                                                     { code: 'CS 4883 - Social Issues in Computing', link: 'http://catalog.okstate.edu/search/?P=CS%204883' },
+                                                     { code: 'CS 4983 - Senior Capstone Project', link: 'http://catalog.okstate.edu/search/?P=CS%204983' },
+                                                     { code: '3 hours Upper-Division CS Elective' },
+                                                     { code: 'Major, College, and Elective courses' }
+                                                 ]
+                                             },
+                                
+                                             {
+                                                  title: 'BACKEND DEVELOPER',
+                                                  description: 'create, maintain, test, and debug the server-side of a website or application',
+                                                  classes: [
+                                                      { code: 'MATHS 2144 - CALCULUS 1', link: 'http://catalog.okstate.edu/search/?P=MATH%202144' },
+                                                      { code: 'COMPUTER SCIENCE 1(A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113' },
+                                                      { code: 'CS 1113 - Computer Science I (A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113 ' },
+                                                      { code: 'General Education Courses' },
+                                                      { code: 'MATHS 2153 - Calculus II (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%202153' },
+                                                      { code: 'CS 2133 - Computer Science II', link: 'http://catalog.okstate.edu/search/?P=CS%202133' },
+                                                      { code: 'General Education Courses' },
+                                                      { code: 'CS 2433 - C/C++ Programming', link: 'http://catalog.okstate.edu/search/?P=CS%202433' },
+                                                      { code: 'CS 3653 - Discrete Mathematics for Computer Science', link: 'http://catalog.okstate.edu/search/?P=CS%203653' },
+                                                      { code: 'MATHS 2163 - Calculus III', link: 'http://catalog.okstate.edu/search/?P=MATH%202163' },
+                                                      { code: 'General Education Courses' },
+                                                      { code: 'CS 3353- Data Structures and Algorithm Analysis I', link: 'http://catalog.okstate.edu/search/?P=CS%203353' },
+                                                      { code: 'CS 3443 - Computer Systems', link: 'http://catalog.okstate.edu/search/?P=CS%203443' },
+                                                      { code: 'MATHS 3013 - Linear Algebra (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%203013' },
+                                                      { code: 'Major, College, and Elective courses' },
+                                                      { code: 'CS 4243 - Introduction to Computer Security', link: 'http://catalog.okstate.edu/search/?P=CS%204243' },
+                                                      { code: 'STAT 4033 - Engineering Statistics', link: 'http://catalog.okstate.edu/search/?P=STAT%204033' },
+                                                      { code: 'Major, College, and Elective courses' },
+                                                      { code: 'CS 3613 - Theoretical Foundations of Computing', link: 'http://catalog.okstate.edu/search/?P=CS%203613' },
+                                                      { code: '3 hours Upper-Division CS Elective' },
+                                                      { code: 'Major, College, and Elective courses' },
+                                                      { code: 'CS 3363 - Organization of Programming Languages', link: 'http://catalog.okstate.edu/search/?P=CS%203363' },
+                                                      { code: 'CS 3513 - Numerical Methods for Digital Computers', link: 'http://catalog.okstate.edu/search/?P=CS%203513' },
+                                                      { code: '3 hours Upper-Division CS Elective, CS 4273 suggested', link: 'http://catalog.okstate.edu/search/?P=CS%204273' },
+                                                      { code: 'Major, College, and Elective courses' },
+                                                      { code: 'CS 4323 - Design and Implementation of Operating Systems I', link: 'http://catalog.okstate.edu/search/?P=CS%204323' },
+                                                      { code: 'CS 4883 - Social Issues in Computing', link: 'http://catalog.okstate.edu/search/?P=CS%204883' },
+                                                      { code: 'CS 4983 - Senior Capstone Project', link: 'http://catalog.okstate.edu/search/?P=CS%204983' },
+                                                      { code: '3 hours Upper-Division CS Elective' },
+                                                      { code: 'Major, College, and Elective courses' }
+                                                  ]
+                                              },
+                                             {
+                                                 title: 'CLOUD ENGINEER',
+                                                 description: 'design, build, and maintain cloud infrastructure for an organization',
+                                                 classes: [
+                                                     { code: 'MATHS 2144 - CALCULUS 1', link: 'http://catalog.okstate.edu/search/?P=MATH%202144' },
+                                                     { code: 'COMPUTER SCIENCE 1(A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113' },
+                                                     { code: 'CS 1113 - Computer Science I (A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113 ' },
+                                                     { code: 'General Education Courses' },
+                                                     { code: 'MATHS 2153 - Calculus II (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%202153' },
+                                                     { code: 'CS 2133 - Computer Science II', link: 'http://catalog.okstate.edu/search/?P=CS%202133' },
+                                                     { code: 'General Education Courses' },
+                                                     { code: 'CS 2433 - C/C++ Programming', link: 'http://catalog.okstate.edu/search/?P=CS%202433' },
+                                                     { code: 'CS 3653 - Discrete Mathematics for Computer Science', link: 'http://catalog.okstate.edu/search/?P=CS%203653' },
+                                                     { code: 'MATHS 2163 - Calculus III', link: 'http://catalog.okstate.edu/search/?P=MATH%202163' },
+                                                     { code: 'General Education Courses' },
+                                                     { code: 'CS 3353- Data Structures and Algorithm Analysis I', link: 'http://catalog.okstate.edu/search/?P=CS%203353' },
+                                                     { code: 'CS 3443 - Computer Systems', link: 'http://catalog.okstate.edu/search/?P=CS%203443' },
+                                                     { code: 'MATHS 3013 - Linear Algebra (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%203013' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 4243 - Introduction to Computer Security', link: 'http://catalog.okstate.edu/search/?P=CS%204243' },
+                                                     { code: 'STAT 4033 - Engineering Statistics', link: 'http://catalog.okstate.edu/search/?P=STAT%204033' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 3613 - Theoretical Foundations of Computing', link: 'http://catalog.okstate.edu/search/?P=CS%203613' },
+                                                     { code: '3 hours Upper-Division CS Elective' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 3363 - Organization of Programming Languages', link: 'http://catalog.okstate.edu/search/?P=CS%203363' },
+                                                     { code: 'CS 3513 - Numerical Methods for Digital Computers', link: 'http://catalog.okstate.edu/search/?P=CS%203513' },
+                                                     { code: '3 hours Upper-Division CS Elective, CS 4273 suggested', link: 'http://catalog.okstate.edu/search/?P=CS%204273' },
+                                                     { code: 'Major, College, and Elective courses' },
+                                                     { code: 'CS 4323 - Design and Implementation of Operating Systems I', link: 'http://catalog.okstate.edu/search/?P=CS%204323' },
+                                                     { code: 'CS 4883 - Social Issues in Computing', link: 'http://catalog.okstate.edu/search/?P=CS%204883' },
+                                                     { code: 'CS 4983 - Senior Capstone Project', link: 'http://catalog.okstate.edu/search/?P=CS%204983' },
+                                                     { code: '3 hours Upper-Division CS Elective' },
+                                                     { code: 'Major, College, and Elective courses' }
+                                                 ]
+                                             }
+                                         ]
+                                     };
+
+
+
+        function showColleges() {
+            const state = document.getElementById('stateSelect').value;
+            const collegeSelect = document.getElementById('collegeSelect');
+            collegeSelect.innerHTML = '<option value="">Select a college...</option>';
+
+            const majorSelect = document.getElementById('majorSelect');
+            majorSelect.innerHTML = '<option value="">Select a major...</option>';
+
+            const jobList = document.getElementById('jobList');
+            jobList.innerHTML = '';
+
+            const jobDetails = document.getElementById('jobDetails');
+            jobDetails.innerHTML = '';
+
+            if (state && colleges[state]) {
+                colleges[state].forEach(college => {
+                    const option = document.createElement('option');
+                    option.value = college;
+                    option.textContent = college;
+                    collegeSelect.appendChild(option);
+                });
+            }
+        }
+
+        function showMajors() {
+            const college = document.getElementById('collegeSelect').value;
+            const majorSelect = document.getElementById('majorSelect');
+            majorSelect.innerHTML = '<option value="">Select a major...</option>';
+
+            const jobList = document.getElementById('jobList');
+            jobList.innerHTML = '';
+
+            const jobDetails = document.getElementById('jobDetails');
+            jobDetails.innerHTML = '';
+
+            if (college && majors[college]) {
+                majors[college].forEach(major => {
+                    const option = document.createElement('option');
+                    option.value = major;
+                    option.textContent = major;
+                    majorSelect.appendChild(option);
+                });
+            }
+        }
+
+        function showJobs() {
+            const major = document.getElementById('majorSelect').value;
+            const jobList = document.getElementById('jobList');
+            const jobDetails = document.getElementById('jobDetails');
+            jobList.innerHTML = '';
+            jobDetails.innerHTML = '';
+
+            if (major && jobs[major]) {
+                jobs[major].forEach(job => {
+                    const li = document.createElement('li');
+                    li.textContent = job.title;
+                    li.onclick = () => showJobDetails(job);
+                    jobList.appendChild(li);
+                });
+            }
+        }
+
+       function showJobDetails(job) {
+    const jobDetails = document.getElementById('jobDetails');
+    jobDetails.innerHTML = `
+        <h2>${job.title}</h2>
+        <p>${job.description}</p>
+        ${job.classes ? `
+        <h3>Recommended Classes:</h3>
+        <ul>
+            ${job.classes.map(c => `<li><a href="${c.link}" target="_blank">${c.code}</a></li>`).join('')}
+        </ul>` : ''}
+    `;
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: darkorange;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: black;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  color: white;
+}
+
+label {
+  display: block;
+  margin: 20px 0 10px;
+}
+
+select, ul {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background: #e0e0e0;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.job-details {
+  background: #f0f0f0;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  color: black;
+}

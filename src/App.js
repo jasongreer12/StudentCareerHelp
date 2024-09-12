@@ -79,4 +79,22 @@ function App() {
   );
 }
 
+// async function connectToDatabase() {
+//   try {
+//     const odbc = require('odbc');
+//     // use a connection string to get access to database
+//     const connection = await odbc.connect('Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\jason\OneDrive\Documents\StudentHelperDB.accdb;');
+    
+//     // query whatever table is needed
+//     const result = await connection.query('SELECT * FROM Class Table');
+    
+//     console.log(result); // output the results of the query
+    
+//     // close connection
+//     await connection.close();
+//   } catch (error) {
+//     console.error('Error connecting to database:', error);
+//   }
+// }
+
 export default App;

@@ -1,10 +1,8 @@
 #selectContainer {
-  background-color: #f0ece2;
-  max-width: fit-content;
-  margin-top: 40px;
-  border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
-  min-height: 40vh;
+  background-color: #f3f3f3 ;
+  max-width: 380px;
+  min-height: 100vh;
+  float: left;
 }
 
 .logoID {

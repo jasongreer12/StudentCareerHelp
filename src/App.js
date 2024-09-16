@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import React, { useEffect, useState } from 'react';
 
 
+
 function App() {
 
   const stateOptions = [
@@ -22,6 +23,7 @@ function App() {
   const jobOptions = [
     { value: "Choose", label: "Choose desired job" },
     { value: "CS", label: "Software Engineer" },
+    {value: "CS", label: "Cyber Security"}
   ];
 
   const [classes, setClasses] = useState([]); // Store the classes data

@@ -1,6 +1,8 @@
 import './App.css';
 import Logo from './classroomPhoto.jpg';
 import Form from 'react-bootstrap/Form';
+import React, { useEffect, useState } from 'react';
+
 
 function App() {
 
@@ -21,6 +23,45 @@ function App() {
     { value: "Choose", label: "Choose desired job" },
     { value: "CS", label: "Software Engineer" },
   ];
+
+  const [classes, setClasses] = useState([]); // Store the classes data
+  const [error, setError] = useState(null);   // Store any error that occurs
+
+    useEffect(() => {
+      // Fetch data from the backend
+      fetch('http://localhost:3000/')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Error fetching data');
+          }
+          return response.json();
+        })
+        .then(data => setClasses(data))
+        .catch(error => setError(error.message));
+    }, []); // Empty array ensures the effect runs once when the component mounts
+
+    if (error) {
+      return <div>Error: {error}</div>;
+    }
+  
+  const renderClassList = () => {
+    if (error) {
+      return <div>Error: {error}</div>;  // Show error message if any
+    }
+
+    return (
+      <div>
+        <h2>Class List</h2>
+        <ul>
+          {classes.map(classItem => (
+            <li key={classItem.ID}>
+              {classItem['Class Code']} - {classItem['Class Name']}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
 
   return (
     <div className="App">
@@ -72,6 +113,12 @@ function App() {
               ))}
             </Form.Select>
           </div>
+
+          {/* Class List Section */}
+          <div className="col-md-12">
+            {/* This will render the class list fetched from your backend */}
+            {renderClassList()}
+          </div>
         </div>
       </div>
     </div>
@@ -79,22 +126,7 @@ function App() {
   );
 }
 
-// async function connectToDatabase() {
-//   try {
-//     const odbc = require('odbc');
-//     // use a connection string to get access to database
-//     const connection = await odbc.connect('Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\jason\OneDrive\Documents\StudentHelperDB.accdb;');
-    
-//     // query whatever table is needed
-//     const result = await connection.query('SELECT * FROM Class Table');
-    
-//     console.log(result); // output the results of the query
-    
-//     // close connection
-//     await connection.close();
-//   } catch (error) {
-//     console.error('Error connecting to database:', error);
-//   }
-// }
+
+
 
 export default App;

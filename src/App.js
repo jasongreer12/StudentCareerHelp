@@ -1,6 +1,6 @@
 import './App.css';
 import Logo from './classroomPhoto.jpg';
-import Form from 'react-bootstrap/Form';
+import { Form } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 
 
@@ -24,6 +24,7 @@ function App() {
     { value: "Choose", label: "Choose desired job" },
     { value: "CS", label: "Software Engineer" },
     { value: "CS", label: "Cyber Security" }
+    { value: "CS", label: "Software Engineer" }
   ];
 
   const [states, setStates] = useState([]);

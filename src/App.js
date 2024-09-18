@@ -22,9 +22,6 @@ function App() {
   ];
   const jobOptions = [
     { value: "Choose", label: "Choose desired job" },
-    { value: "CS", label: "Software Engineer" },
-    { value: "CS", label: "Cyber Security" }
-    { value: "CS", label: "Software Engineer" }
   ];
 
   const [states, setStates] = useState([]);

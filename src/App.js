@@ -1,6 +1,6 @@
 import './App.css';
 import Logo from './classroomPhoto.jpg';
-import Form from 'react-bootstrap/Form';
+import { Form } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 
 
@@ -22,14 +22,13 @@ function App() {
   ];
   const jobOptions = [
     { value: "Choose", label: "Choose desired job" },
-    { value: "CS", label: "Software Engineer" },
-    {value: "CS", label: "Cyber Security"}
+    { value: "CS", label: "Software Engineer" }
   ];
 
   const [classes, setClasses] = useState([]); // Store the classes data
   const [error, setError] = useState(null);   // Store any error that occurs
 
-    useEffect(() => {
+   /* useEffect(() => {
       // Fetch data from the backend
       fetch('http://localhost:3000/')
         .then(response => {
@@ -45,6 +44,7 @@ function App() {
     if (error) {
       return <div>Error: {error}</div>;
     }
+      */
   
   const renderClassList = () => {
     if (error) {

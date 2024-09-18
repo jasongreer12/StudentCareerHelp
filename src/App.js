@@ -23,47 +23,75 @@ function App() {
   const jobOptions = [
     { value: "Choose", label: "Choose desired job" },
     { value: "CS", label: "Software Engineer" },
-    {value: "CS", label: "Cyber Security"}
+    { value: "CS", label: "Cyber Security" }
   ];
 
-  const [classes, setClasses] = useState([]); // Store the classes data
-  const [error, setError] = useState(null);   // Store any error that occurs
+  const [states, setStates] = useState([]);
+  const [schools, setSchools] = useState([]);
+  const [majors, setMajors] = useState([]);
+  const [jobs, setJobs] = useState([]);
+  const [selectedState, setSelectedState] = useState('Choose');
+  const [selectedSchool, setSelectedSchool] = useState('Choose');
+  const [selectedMajor, setSelectedMajor] = useState('Choose');
+  const [selectedJob, setSelectedJob] = useState('Choose');
+  const [error, setError] = useState(null);
 
-    useEffect(() => {
-      // Fetch data from the backend
-      fetch('http://localhost:3000/')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Error fetching data');
-          }
-          return response.json();
-        })
-        .then(data => setClasses(data))
-        .catch(error => setError(error.message));
-    }, []); // Empty array ensures the effect runs once when the component mounts
+  useEffect(() => {
+    const fetchOptions = async () => {
+      try {
+        const [stateRes, schoolRes, majorRes, jobRes] = await Promise.all([
+          fetch('http://localhost:3000/states'),
+          fetch('http://localhost:3000/schools'),
+          fetch('http://localhost:3000/majors'),
+          fetch('http://localhost:3000/jobs')
+        ]);
 
-    if (error) {
-      return <div>Error: {error}</div>;
+        const statesData = await stateRes.json();
+        const schoolsData = await schoolRes.json();
+        const majorsData = await majorRes.json();
+        const jobsData = await jobRes.json();
+
+        setStates(statesData);
+        setSchools(schoolsData);
+        setMajors(majorsData);
+        setJobs(jobsData);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchOptions();
+  }, []);
+
+
+
+  // get info based on user choice
+  useEffect(() => {
+    const fetchFilteredData = async () => {
+      try {
+        const queryParams = new URLSearchParams({
+          state: selectedState,
+          school: selectedSchool,
+          major: selectedMajor,
+          job: selectedJob
+        }).toString();
+
+        const response = await fetch(`http://localhost:3000/filter?${queryParams}`);
+        const data = await response.json();
+        // need to do something with data like display it
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    // Only fetch data if one or more filters are selected
+    if (selectedState && selectedSchool && selectedMajor && selectedJob) {
+      fetchFilteredData();
     }
-  
-  const renderClassList = () => {
-    if (error) {
-      return <div>Error: {error}</div>;  // Show error message if any
-    }
+  }, [selectedState, selectedSchool, selectedMajor, selectedJob]); // Dependencies for filter effect
 
-    return (
-      <div>
-        <h2>Class List</h2>
-        <ul>
-          {classes.map(classItem => (
-            <li key={classItem.ID}>
-              {classItem['Class Code']} - {classItem['Class Name']}
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  };
+
+
 
   return (
     <div className="App">
@@ -74,8 +102,10 @@ function App() {
 
           <div className="col-md-12">
             <label className="form-label" for="inputGroupSelect01" style={{ fontWeight: '700' }}>State:</label>
-            <Form.Select id="inputGroupSelect01" size="lg" className="form-select">
-              {stateOptions.map((option) => (
+            <Form.Select id="inputGroupSelect01" size="lg" className="form-select" value={selectedState}
+              onChange={(e) => setSelectedSchool(e.target.value)}>
+              <option value="Choose" disabled selected>Choose your state</option>
+              {states.map(option => (
                 <option key={option.value} value={option.value}>
                   {option.label}
                 </option>
@@ -85,21 +115,25 @@ function App() {
 
           <div className="col-md-12" >
             <label className="form-label" for="inputGroupSelect02">School:</label>
-            <Form.Select id="inputGroupSelect02" size="lg" className="form-select">
-              {schoolOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
+            <Form.Select id="inputGroupSelect02" size="lg" className="form-select" value={selectedSchool}
+              onChange={(e) => setSelectedSchool(e.target.value)}>
+              <option value="Choose" disabled selected>Choose your school</option>
+              {schools.map((school, index) => (
+                <option key={index} value={school.SchoolName}>
+                  {school.SchoolName}
                 </option>
               ))}
             </Form.Select>
           </div>
 
           <div className="col-md-12">
-            <label className="form-label" for="inputGroupSelect02">Choose a major:</label>
-            <Form.Select id="inputGroupSelect03" size="lg" className="form-select">
-              {majorOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
+            <label className="form-label" for="inputGroupSelect02">Major:</label>
+            <Form.Select id="inputGroupSelect03" size="lg" className="form-select" value={selectedMajor}
+              onChange={(e) => setSelectedMajor(e.target.value)}>
+              <option value="Choose" disabled selected>Choose your major</option>
+              {majors.map((major, index) => (
+                <option key={index} value={major.MajorName}>
+                  {major.MajorName}
                 </option>
               ))}
             </Form.Select>
@@ -107,21 +141,24 @@ function App() {
 
           <div className="col-md-12">
             <label className="form-label" for="inputGroupSelect03" style={{ fontWeight: '700' }}>Job:</label>
-            <Form.Select id="inputGroupSelect04" size="lg" className="form-select">
-              {jobOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
+            <Form.Select id="inputGroupSelect04" size="lg" className="form-select" value={selectedJob}
+              onChange={(e) => setSelectedJob(e.target.value)}>
+              <option value="Choose" disabled selected>Choose desired job</option>
+              {jobs.map((job, index) => (
+                <option key={index} value={job.JobName}>
+                  {job.JobName}
                 </option>
               ))}
             </Form.Select>
           </div>
 
-          {/* Class List Section */}
-          <div className="col-md-12">
-            {/* This will render the class list fetched from your backend */}
-            {renderClassList()}
-          </div>
+
         </div>
+      </div>
+      {/* Class List Section */}
+      <div className="container-fluid" id="schoolInfoContainer">
+        {/* This will render the class list fetched from your backend */}
+
       </div>
     </div>
 

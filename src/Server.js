@@ -1,6 +1,6 @@
-const odbc = require('odbc');
-const express = require('express');
-const cors = require('cors'); // Import cors
+import odbc from 'odbc';
+import express from 'express';
+import cors from 'cors';
 
 const app = express();
 const port = 3000;
@@ -127,6 +127,31 @@ app.get('/states', async (req, res) => {
   } catch (error) {
     console.error('Error connecting to major database:', error);
     res.status(500).send('Error connecting to the database.');
+  }
+});
+
+
+app.get('/filter', async (req, res) => {
+  try {
+    const selectedJob = req.query.job || ''; // get 'job' from query string or empty string
+    const selectedSchool = req.query.school || '';
+
+    const connection = await odbc.connect(connString);
+    
+    const queryString = `
+      SELECT JobName, JobSalary, JobDescription 
+      FROM [JobTable] 
+      WHERE JobName LIKE '%${selectedJob}%';
+    `;
+    const result = await connection.query(queryString);
+    await connection.close();
+    
+    res.json(result);
+
+  }
+  catch (error) {
+    console.error('Error getting request query.');
+    res.status(500).send('Error getting request query');
   }
 });
 

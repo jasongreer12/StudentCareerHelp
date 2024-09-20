@@ -24,6 +24,8 @@ function App() {
     { value: "Choose", label: "Choose desired job" },
   ];
 
+
+  const [jobsData, setJobsData] = useState([]);
   const [states, setStates] = useState([]);
   const [schools, setSchools] = useState([]);
   const [majors, setMajors] = useState([]);
@@ -75,15 +77,16 @@ function App() {
         }).toString();
 
         const response = await fetch(`http://localhost:3000/filter?${queryParams}`);
+        console.log(queryParams);
         const data = await response.json();
-        // need to do something with data like display it
+        setJobsData(data);
+        console.log(data);
       } catch (err) {
         setError(err.message);
       }
-    };
 
-    // Only fetch data if one or more filters are selected
-    if (selectedState && selectedSchool && selectedMajor && selectedJob) {
+    };
+    if (selectedState || selectedSchool || selectedMajor || selectedJob) {
       fetchFilteredData();
     }
   }, [selectedState, selectedSchool, selectedMajor, selectedJob]); // Dependencies for filter effect
@@ -154,12 +157,22 @@ function App() {
         </div>
       </div>
       {/* Class List Section */}
-      <div className="container-fluid" id="schoolInfoContainer">
-        {/* This will render the class list fetched from your backend */}
-
+      <div className="container-fluid" id="jobInfoContainer">
+        {jobsData.length > 0 ? (
+          <div className="row">
+            {jobsData.map((job, index) => (
+              <div key={index} className="col-md-12">
+                <h3>{job.JobName}</h3>
+                <p><strong>Salary:</strong> ${job.JobSalary}</p>
+                <p><strong>Description:</strong> {job.JobDescription}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p><strong>No job data available</strong></p>
+        )}
       </div>
     </div>
-
   );
 }
 

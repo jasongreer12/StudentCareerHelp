@@ -1,6 +1,34 @@
 import odbc from 'odbc';
 import express from 'express';
 import cors from 'cors';
+import{fetchCareerOverview} from './Backend/api.js'
+
+//connecting api to server
+app.get('/filter', async (req, res) => {
+  try {
+    const selectedJob = req.query.job || '';
+    const connection = await odbc.connect(connString);
+    const queryString = `
+      SELECT JobName, JobSalary, JobDescription 
+      FROM [JobTable] 
+      WHERE JobName LIKE '%${selectedJob}%';
+    `;
+    const dbResult = await connection.query(queryString);
+    await connection.close();
+
+    // Fetch O*NET data
+    const apiResult = await fetchCareerOverview(selectedJob);
+
+    // Combine and return data
+    const combinedResult = { dbData: dbResult, apiData: apiResult };
+    res.json(combinedResult);
+  } catch (error) {
+    console.error('Error fetching job data:', error);
+    res.status(500).send('Error fetching job data.');
+  }
+});
+
+
 
 const app = express();
 const port = 3000;

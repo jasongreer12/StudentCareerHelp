@@ -2,9 +2,9 @@ import './App.css';
 import Logo from './classroomPhoto.jpg';
 import OSULogo from './OSUlogo.png';
 import OULogo from './images.png';
-import TULogo from './tu_law_logo.png'
-import UCOLogo from './images-2.png'
-import RSULogo from './images-3.png'
+import TULogo from './tu_law_logo.png';
+import UCOLogo from './images-2.png';
+import RSULogo from './images-3.png';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 
@@ -21,15 +21,16 @@ function App() {
   const schoolOptions = [
     { value: "Choose", label: "Select your University" },
     { value: "OSU", label: "Oklahoma State University" },
-    { value: "OU", label: "University of Oklahoma"},
-    { value: "UCO", label: "University of Central Oklahoma"},
-    { value: "TU", label: "University of Tulsa"},
-    { value: "RSU", label: "Rogers State University"},
+    { value: "OU", label: "University of Oklahoma" },
+    { value: "UCO", label: "University of Central Oklahoma" },
+    { value: "TU", label: "University of Tulsa" },
+    { value: "RSU", label: "Rogers State University" },
   ];
 
   const majorOptions = [
     { value: "Choose", label: "Choose your major" },
     { value: "CS", label: "Computer Science" },
+    // Add more majors as needed
   ];
 
   const jobOptions = [
@@ -40,138 +41,178 @@ function App() {
     { value: "FD", label: "Full-Stack Developer" },
   ];
 
-  // Job-specific recommended classes
+  // Job-specific recommended classes organized by year and semester
   const jobClasses = {
-    SE: [
-      { code: 'MATHS 2144 - CALCULUS 1', link: 'http://catalog.okstate.edu/search/?P=MATH%202144' },
-      { code: 'COMPUTER SCIENCE 1(A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113' },
-      { code: 'CS 1113 - Computer Science I (A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113 ' },
-      { code: 'General Education Courses' },
-      { code: 'MATHS 2153 - Calculus II (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%202153' },
-      { code: 'CS 2133 - Computer Science II', link: 'http://catalog.okstate.edu/search/?P=CS%202133' },
-      { code: 'General Education Courses' },
-      { code: 'CS 2433 - C/C++ Programming', link: 'http://catalog.okstate.edu/search/?P=CS%202433' },
-      { code: 'CS 3653 - Discrete Mathematics for Computer Science', link: 'http://catalog.okstate.edu/search/?P=CS%203653' },
-      { code: 'MATHS 2163 - Calculus III', link: 'http://catalog.okstate.edu/search/?P=MATH%202163' },
-      { code: 'General Education Courses' },
-      { code: 'CS 3353- Data Structures and Algorithm Analysis I', link: 'http://catalog.okstate.edu/search/?P=CS%203353' },
-      { code: 'CS 3443 - Computer Systems', link: 'http://catalog.okstate.edu/search/?P=CS%203443' },
-      { code: 'MATHS 3013 - Linear Algebra (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%203013' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 4243 - Introduction to Computer Security', link: 'http://catalog.okstate.edu/search/?P=CS%204243' },
-      { code: 'STAT 4033 - Engineering Statistics', link: 'http://catalog.okstate.edu/search/?P=STAT%204033' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 3613 - Theoretical Foundations of Computing', link: 'http://catalog.okstate.edu/search/?P=CS%203613' },
-      { code: '3 hours Upper-Division CS Elective' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 3363 - Organization of Programming Languages', link: 'http://catalog.okstate.edu/search/?P=CS%203363' },
-      { code: 'CS 3513 - Numerical Methods for Digital Computers', link: 'http://catalog.okstate.edu/search/?P=CS%203513' },
-      { code: '3 hours Upper-Division CS Elective, CS 4273 suggested', link: 'http://catalog.okstate.edu/search/?P=CS%204273' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 4323 - Design and Implementation of Operating Systems I', link: 'http://catalog.okstate.edu/search/?P=CS%204323' },
-      { code: 'CS 4883 - Social Issues in Computing', link: 'http://catalog.okstate.edu/search/?P=CS%204883' },
-      { code: 'CS 4983 - Senior Capstone Project', link: 'http://catalog.okstate.edu/search/?P=CS%204983' },
-      { code: '3 hours Upper-Division CS Elective' },
-      { code: 'Major, College, and Elective courses' },
-    ],
-    CE: [
-      { code: 'MATHS 2144 - CALCULUS 1', link: 'http://catalog.okstate.edu/search/?P=MATH%202144' },
-      { code: 'COMPUTER SCIENCE 1(A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113' },
-      { code: 'CS 1113 - Computer Science I (A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113 ' },
-      { code: 'General Education Courses' },
-      { code: 'MATHS 2153 - Calculus II (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%202153' },
-      { code: 'CS 2133 - Computer Science II', link: 'http://catalog.okstate.edu/search/?P=CS%202133' },
-      { code: 'General Education Courses' },
-      { code: 'CS 2433 - C/C++ Programming', link: 'http://catalog.okstate.edu/search/?P=CS%202433' },
-      { code: 'CS 3653 - Discrete Mathematics for Computer Science', link: 'http://catalog.okstate.edu/search/?P=CS%203653' },
-      { code: 'MATHS 2163 - Calculus III', link: 'http://catalog.okstate.edu/search/?P=MATH%202163' },
-      { code: 'General Education Courses' },
-      { code: 'CS 3353- Data Structures and Algorithm Analysis I', link: 'http://catalog.okstate.edu/search/?P=CS%203353' },
-      { code: 'CS 3443 - Computer Systems', link: 'http://catalog.okstate.edu/search/?P=CS%203443' },
-      { code: 'MATHS 3013 - Linear Algebra (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%203013' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 4243 - Introduction to Computer Security', link: 'http://catalog.okstate.edu/search/?P=CS%204243' },
-      { code: 'STAT 4033 - Engineering Statistics', link: 'http://catalog.okstate.edu/search/?P=STAT%204033' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 3613 - Theoretical Foundations of Computing', link: 'http://catalog.okstate.edu/search/?P=CS%203613' },
-      { code: '3 hours Upper-Division CS Elective' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 3363 - Organization of Programming Languages', link: 'http://catalog.okstate.edu/search/?P=CS%203363' },
-      { code: 'CS 3513 - Numerical Methods for Digital Computers', link: 'http://catalog.okstate.edu/search/?P=CS%203513' },
-      { code: '3 hours Upper-Division CS Elective, CS 4273 suggested', link: 'http://catalog.okstate.edu/search/?P=CS%204273' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 4323 - Design and Implementation of Operating Systems I', link: 'http://catalog.okstate.edu/search/?P=CS%204323' },
-      { code: 'CS 4883 - Social Issues in Computing', link: 'http://catalog.okstate.edu/search/?P=CS%204883' },
-      { code: 'CS 4983 - Senior Capstone Project', link: 'http://catalog.okstate.edu/search/?P=CS%204983' },
-      { code: '3 hours Upper-Division CS Elective' },
-      { code: 'Major, College, and Elective courses' },
-    ],
-    BD: [
-      { code: 'MATHS 2144 - CALCULUS 1', link: 'http://catalog.okstate.edu/search/?P=MATH%202144' },
-      { code: 'COMPUTER SCIENCE 1(A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113' },
-      { code: 'CS 1113 - Computer Science I (A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113 ' },
-      { code: 'General Education Courses' },
-      { code: 'MATHS 2153 - Calculus II (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%202153' },
-      { code: 'CS 2133 - Computer Science II', link: 'http://catalog.okstate.edu/search/?P=CS%202133' },
-      { code: 'General Education Courses' },
-      { code: 'CS 2433 - C/C++ Programming', link: 'http://catalog.okstate.edu/search/?P=CS%202433' },
-      { code: 'CS 3653 - Discrete Mathematics for Computer Science', link: 'http://catalog.okstate.edu/search/?P=CS%203653' },
-      { code: 'MATHS 2163 - Calculus III', link: 'http://catalog.okstate.edu/search/?P=MATH%202163' },
-      { code: 'General Education Courses' },
-      { code: 'CS 3353- Data Structures and Algorithm Analysis I', link: 'http://catalog.okstate.edu/search/?P=CS%203353' },
-      { code: 'CS 3443 - Computer Systems', link: 'http://catalog.okstate.edu/search/?P=CS%203443' },
-      { code: 'MATHS 3013 - Linear Algebra (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%203013' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 4243 - Introduction to Computer Security', link: 'http://catalog.okstate.edu/search/?P=CS%204243' },
-      { code: 'STAT 4033 - Engineering Statistics', link: 'http://catalog.okstate.edu/search/?P=STAT%204033' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 3613 - Theoretical Foundations of Computing', link: 'http://catalog.okstate.edu/search/?P=CS%203613' },
-      { code: '3 hours Upper-Division CS Elective' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 3363 - Organization of Programming Languages', link: 'http://catalog.okstate.edu/search/?P=CS%203363' },
-      { code: 'CS 3513 - Numerical Methods for Digital Computers', link: 'http://catalog.okstate.edu/search/?P=CS%203513' },
-      { code: '3 hours Upper-Division CS Elective, CS 4273 suggested', link: 'http://catalog.okstate.edu/search/?P=CS%204273' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 4323 - Design and Implementation of Operating Systems I', link: 'http://catalog.okstate.edu/search/?P=CS%204323' },
-      { code: 'CS 4883 - Social Issues in Computing', link: 'http://catalog.okstate.edu/search/?P=CS%204883' },
-      { code: 'CS 4983 - Senior Capstone Project', link: 'http://catalog.okstate.edu/search/?P=CS%204983' },
-      { code: '3 hours Upper-Division CS Elective' },
-      { code: 'Major, College, and Elective courses' },
-    ],
-    FD: [
-      { code: 'MATHS 2144 - CALCULUS 1', link: 'http://catalog.okstate.edu/search/?P=MATH%202144' },
-      { code: 'COMPUTER SCIENCE 1(A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113' },
-      { code: 'CS 1113 - Computer Science I (A)', link: 'http://catalog.okstate.edu/search/?P=CS%201113 ' },
-      { code: 'General Education Courses' },
-      { code: 'MATHS 2153 - Calculus II (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%202153' },
-      { code: 'CS 2133 - Computer Science II', link: 'http://catalog.okstate.edu/search/?P=CS%202133' },
-      { code: 'General Education Courses' },
-      { code: 'CS 2433 - C/C++ Programming', link: 'http://catalog.okstate.edu/search/?P=CS%202433' },
-      { code: 'CS 3653 - Discrete Mathematics for Computer Science', link: 'http://catalog.okstate.edu/search/?P=CS%203653' },
-      { code: 'MATHS 2163 - Calculus III', link: 'http://catalog.okstate.edu/search/?P=MATH%202163' },
-      { code: 'General Education Courses' },
-      { code: 'CS 3353- Data Structures and Algorithm Analysis I', link: 'http://catalog.okstate.edu/search/?P=CS%203353' },
-      { code: 'CS 3443 - Computer Systems', link: 'http://catalog.okstate.edu/search/?P=CS%203443' },
-      { code: 'MATHS 3013 - Linear Algebra (A)', link: 'http://catalog.okstate.edu/search/?P=MATH%203013' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 4243 - Introduction to Computer Security', link: 'http://catalog.okstate.edu/search/?P=CS%204243' },
-      { code: 'STAT 4033 - Engineering Statistics', link: 'http://catalog.okstate.edu/search/?P=STAT%204033' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 3613 - Theoretical Foundations of Computing', link: 'http://catalog.okstate.edu/search/?P=CS%203613' },
-      { code: '3 hours Upper-Division CS Elective' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 3363 - Organization of Programming Languages', link: 'http://catalog.okstate.edu/search/?P=CS%203363' },
-      { code: 'CS 3513 - Numerical Methods for Digital Computers', link: 'http://catalog.okstate.edu/search/?P=CS%203513' },
-      { code: '3 hours Upper-Division CS Elective, CS 4273 suggested', link: 'http://catalog.okstate.edu/search/?P=CS%204273' },
-      { code: 'Major, College, and Elective courses' },
-      { code: 'CS 4323 - Design and Implementation of Operating Systems I', link: 'http://catalog.okstate.edu/search/?P=CS%204323' },
-      { code: 'CS 4883 - Social Issues in Computing', link: 'http://catalog.okstate.edu/search/?P=CS%204883' },
-      { code: 'CS 4983 - Senior Capstone Project', link: 'http://catalog.okstate.edu/search/?P=CS%204983' },
-      { code: '3 hours Upper-Division CS Elective' },
-      { code: 'Major, College, and Elective courses' },
-    ],
+    SE: {
+      freshman: {
+        fall: [
+          { name: "MATH 2144 - Calculus I", link: "https://link_to_calculus_1" },
+          { name: "CS 1113 - Computer Science I (A)", link: "https://link_to_cs1" },
+        ],
+        spring: [
+          { name: "General Education Courses", link: "https://link_to_general_ed" },
+        ],
+      },
+      sophomore: {
+        fall: [
+          { name: "MATH 2153 - Calculus II", link: "https://link_to_calculus_2" },
+          { name: "CS 2133 - Computer Science II", link: "https://link_to_cs2" },
+        ],
+        spring: [
+          { name: "CS 2433 - C/C++ Programming", link: "https://link_to_cplusplus" },
+          { name: "CS 3653 - Discrete Mathematics for Computer Science", link: "https://link_to_discrete_math" },
+        ],
+      },
+      junior: {
+        fall: [
+          { name: "MATH 2163 - Calculus III", link: "https://link_to_calculus_3" },
+          { name: "CS 3353 - Data Structures and Algorithm Analysis I", link: "https://link_to_data_structures" },
+        ],
+        spring: [
+          { name: "CS 3443 - Computer Systems", link: "https://link_to_computer_systems" },
+          { name: "MATH 3013 - Linear Algebra", link: "https://link_to_linear_algebra" },
+        ],
+      },
+      senior: {
+        fall: [
+          { name: "CS 4243 - Introduction to Computer Security", link: "https://link_to_security" },
+          { name: "STAT 4033 - Engineering Statistics", link: "https://link_to_statistics" },
+        ],
+        spring: [
+          { name: "CS 3613 - Theoretical Foundations of Computing", link: "https://link_to_theoretical_foundations" },
+          { name: "CS 3363 - Organization of Programming Languages", link: "https://link_to_programming_languages" },
+          { name: "CS 4983 - Senior Capstone Project", link: "https://link_to_capstone_project" },
+        ],
+      },
+    },
+    CE: {
+      freshman: {
+        fall: [
+          { name: "MATH 2144 - Calculus I", link: "https://link_to_calculus_1" },
+          { name: "CS 1113 - Computer Science I (A)", link: "https://link_to_cs1" },
+        ],
+        spring: [
+          { name: "General Education Courses", link: "https://link_to_general_ed" },
+        ],
+      },
+      sophomore: {
+        fall: [
+          { name: "MATH 2153 - Calculus II", link: "https://link_to_calculus_2" },
+          { name: "CS 2133 - Computer Science II", link: "https://link_to_cs2" },
+        ],
+        spring: [
+          { name: "CS 2433 - C/C++ Programming", link: "https://link_to_cplusplus" },
+          { name: "CS 3653 - Discrete Mathematics for Computer Science", link: "https://link_to_discrete_math" },
+        ],
+      },
+      junior: {
+        fall: [
+          { name: "MATH 2163 - Calculus III", link: "https://link_to_calculus_3" },
+          { name: "CS 3353 - Data Structures and Algorithm Analysis I", link: "https://link_to_data_structures" },
+        ],
+        spring: [
+          { name: "CS 3443 - Computer Systems", link: "https://link_to_computer_systems" },
+          { name: "MATH 3013 - Linear Algebra", link: "https://link_to_linear_algebra" },
+        ],
+      },
+      senior: {
+        fall: [
+          { name: "CS 4243 - Introduction to Computer Security", link: "https://link_to_security" },
+          { name: "STAT 4033 - Engineering Statistics", link: "https://link_to_statistics" },
+        ],
+        spring: [
+          { name: "CS 3613 - Theoretical Foundations of Computing", link: "https://link_to_theoretical_foundations" },
+          { name: "CS 3363 - Organization of Programming Languages", link: "https://link_to_programming_languages" },
+          { name: "CS 4983 - Senior Capstone Project", link: "https://link_to_capstone_project" },
+        ],
+      },
+    },
+    BD: {
+      freshman: {
+        fall: [
+          { name: "MATH 2144 - Calculus I", link: "https://link_to_calculus_1" },
+          { name: "CS 1113 - Computer Science I (A)", link: "https://link_to_cs1" },
+        ],
+        spring: [
+          { name: "General Education Courses", link: "https://link_to_general_ed" },
+        ],
+      },
+      sophomore: {
+        fall: [
+          { name: "MATH 2153 - Calculus II", link: "https://link_to_calculus_2" },
+          { name: "CS 2133 - Computer Science II", link: "https://link_to_cs2" },
+        ],
+        spring: [
+          { name: "CS 2433 - C/C++ Programming", link: "https://link_to_cplusplus" },
+          { name: "CS 3653 - Discrete Mathematics for Computer Science", link: "https://link_to_discrete_math" },
+        ],
+      },
+      junior: {
+        fall: [
+          { name: "MATH 2163 - Calculus III", link: "https://link_to_calculus_3" },
+          { name: "CS 3353 - Data Structures and Algorithm Analysis I", link: "https://link_to_data_structures" },
+        ],
+        spring: [
+          { name: "CS 3443 - Computer Systems", link: "https://link_to_computer_systems" },
+          { name: "MATH 3013 - Linear Algebra", link: "https://link_to_linear_algebra" },
+        ],
+      },
+      senior: {
+        fall: [
+          { name: "CS 4243 - Introduction to Computer Security", link: "https://link_to_security" },
+          { name: "STAT 4033 - Engineering Statistics", link: "https://link_to_statistics" },
+        ],
+        spring: [
+          { name: "CS 3613 - Theoretical Foundations of Computing", link: "https://link_to_theoretical_foundations" },
+          { name: "CS 3363 - Organization of Programming Languages", link: "https://link_to_programming_languages" },
+          { name: "CS 4983 - Senior Capstone Project", link: "https://link_to_capstone_project" },
+        ],
+      },
+    },
+    FD: {
+      freshman: {
+        fall: [
+          { name: "MATH 2144 - Calculus I", link: "https://link_to_calculus_1" },
+          { name: "CS 1113 - Computer Science I (A)", link: "https://link_to_cs1" },
+        ],
+        spring: [
+          { name: "General Education Courses", link: "https://link_to_general_ed" },
+        ],
+      },
+      sophomore: {
+        fall: [
+          { name: "MATH 2153 - Calculus II", link: "https://link_to_calculus_2" },
+          { name: "CS 2133 - Computer Science II", link: "https://link_to_cs2" },
+        ],
+        spring: [
+          { name: "CS 2433 - C/C++ Programming", link: "https://link_to_cplusplus" },
+          { name: "CS 3653 - Discrete Mathematics for Computer Science", link: "https://link_to_discrete_math" },
+        ],
+      },
+      junior: {
+        fall: [
+          { name: "MATH 2163 - Calculus III", link: "https://link_to_calculus_3" },
+          { name: "CS 3353 - Data Structures and Algorithm Analysis I", link: "https://link_to_data_structures" },
+        ],
+        spring: [
+          { name: "CS 3443 - Computer Systems", link: "https://link_to_computer_systems" },
+          { name: "MATH 3013 - Linear Algebra", link: "https://link_to_linear_algebra" },
+        ],
+      },
+      senior: {
+        fall: [
+          { name: "CS 4243 - Introduction to Computer Security", link: "https://link_to_security" },
+          { name: "STAT 4033 - Engineering Statistics", link: "https://link_to_statistics" },
+        ],
+        spring: [
+          { name: "CS 3613 - Theoretical Foundations of Computing", link: "https://link_to_theoretical_foundations" },
+          { name: "CS 3363 - Organization of Programming Languages", link: "https://link_to_programming_languages" },
+          { name: "CS 4983 - Senior Capstone Project", link: "https://link_to_capstone_project" },
+        ],
+      },
+    },
   };
-
+  
   // Job-specific descriptions
   const jobDescriptions = {
     SE: 'Software Engineers design, develop, and maintain software systems. They work closely with clients and teams to build efficient solutions.',
@@ -208,7 +249,6 @@ function App() {
         return UCOLogo;
       case 'RSU':
         return RSULogo;
-
       default:
         return Logo; // Default background
     }
@@ -219,77 +259,88 @@ function App() {
       <h1 id="appTitle">Student Career Helper</h1>
 
       <div className="container-fluid main-layout">
-        {/* Left side: Form selection */}
+        {/* Left side: Job description and selection */}
         <div className="left-sidebar">
-          <div className="form-section">
-            <h2>Choose Your Path</h2>
-            <div className="form-group">
-              <label htmlFor="inputGroupSelect01">State:</label>
-              <Form.Select id="inputGroupSelect01" size="lg">
-                {stateOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </Form.Select>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="inputGroupSelect02">School:</label>
-              <Form.Select id="inputGroupSelect02" size="lg" onChange={handleSchoolChange}>
-                {schoolOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </Form.Select>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="inputGroupSelect03">Choose a major:</label>
-              <Form.Select id="inputGroupSelect03" size="lg" onChange={handleMajorChange}>
-                {majorOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </Form.Select>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="inputGroupSelect04">Desired Job:</label>
-              <Form.Select id="inputGroupSelect04" size="lg" onChange={handleJobChange}>
-                {jobOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </Form.Select>
-            </div>
+          <h2>Choose Your Path</h2>
+          <div className="form-group">
+            <label htmlFor="inputGroupSelect01">State:</label>
+            <Form.Select id="inputGroupSelect01" size="lg">
+              {stateOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Form.Select>
           </div>
+
+          <div className="form-group">
+            <label htmlFor="inputGroupSelect02">School:</label>
+            <Form.Select id="inputGroupSelect02" size="lg" onChange={handleSchoolChange}>
+              {schoolOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Form.Select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="inputGroupSelect03">Major:</label>
+            <Form.Select id="inputGroupSelect03" size="lg" onChange={handleMajorChange}>
+              {majorOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Form.Select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="inputGroupSelect04">Job:</label>
+            <Form.Select id="inputGroupSelect04" size="lg" onChange={handleJobChange}>
+              {jobOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Form.Select>
+          </div>
+
         </div>
 
-        {/* Right side: Job details */}
+        {/* Right side: Job description and recommended classes */}
         <div className="right-sidebar">
           {selectedJob && selectedJob !== 'Choose' && (
-            <>
-              <div className="job-description-classes">
-                <div className="job-description">
-                  <h2>Job Description</h2>
-                  <p>{jobDescriptions[selectedJob]}</p>
-                </div>
-                <div className="recommended-classes">
-                  <h2>Recommended Classes</h2>
-                  <ul>
-                    {jobClasses[selectedJob].map((classItem, index) => (
-                      <li key={index}>
-                        {classItem.link ? <a href={classItem.link}>{classItem.code}</a> : classItem.code}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            <div className="job-description-classes">
+              <div className="job-description">
+                <h2>Job Description</h2>
+                <p>{jobDescriptions[selectedJob]}</p>
               </div>
-            </>
+              <div className="recommended-classes">
+                <h2>Recommended Classes</h2>
+                <ul>
+                  {Object.entries(jobClasses[selectedJob]).map(([year, semesters]) => (
+                    <li key={year}>
+                      <strong>{year.charAt(0).toUpperCase() + year.slice(1)}</strong>
+                      <ul>
+                        {Object.entries(semesters).map(([semester, classes]) => (
+                          <li key={semester}>
+                            <strong>{semester.charAt(0).toUpperCase() + semester.slice(1)} Semester</strong>
+                            <ul>
+                              {classes.map((course) => (
+                                <li key={course.link}>
+                                  <a href={course.link} target="_blank" rel="noopener noreferrer">{course.name}</a>
+                                </li>
+                              ))}
+                            </ul>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           )}
         </div>
       </div>

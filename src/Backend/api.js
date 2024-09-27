@@ -9,7 +9,7 @@ const PASSWORD = process.env.ONET_PASSWORD  // Replace with your O*NET API passw
 const BASE_URL = 'https://services.onetcenter.org/v1.9/ws/mnm/careers/';  // Base URL for career reports
 
 // Function to fetch career overview for a given O*NET-SOC Code
-const fetchCareerOverview = async (jobname) => {
+const fetchCareerOverview = async (socCode) => {
   const auth = Buffer.from(`${USERNAME}:${PASSWORD}`).toString('base64');
 
   try {
@@ -33,4 +33,4 @@ const fetchCareerOverview = async (jobname) => {
 };
 
 // Example call for Software Developers (SOC Code: 15-1252)
-fetchCareerOverview(jobname);
+export default fetchCareerOverview;

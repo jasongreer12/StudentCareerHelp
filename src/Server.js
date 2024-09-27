@@ -15,14 +15,14 @@ app.get('/filter', async (req, res) => {
     const queryString = `
       SELECT JobName, JobSalary, JobDescription 
       FROM [JobTable] 
-      WHERE JobName LIKE '%${socCode}%';
+      WHERE JobName LIKE '%${selectedJob}%';
     `;
     const dbResult = await connection.query(queryString);
     await connection.close();
 
     // Fetch O*NET data
-    const apiResult = await fetchCareerOverview(socCode);
-    console.log(`Selected job:, ${socCode}`);
+    const apiResult = await fetchCareerOverview(selectedJob);
+    console.log(`Selected job:, ${selectedJob}`);
     // Combine and return data
     const combinedResult = { dbData: dbResult, apiData: apiResult };
     res.json(combinedResult);

@@ -9,11 +9,11 @@ const PASSWORD = process.env.ONET_PASSWORD  // Replace with your O*NET API passw
 const BASE_URL = 'https://services.onetcenter.org/v1.9/ws/mnm/careers/';  // Base URL for career reports
 
 // Function to fetch career overview for a given O*NET-SOC Code
-const fetchCareerOverview = async (socCode) => {
+const fetchCareerOverview = async (jobName) => {
   const auth = Buffer.from(`${USERNAME}:${PASSWORD}`).toString('base64');
 
   try {
-    const response = await axios.get(`${BASE_URL}${socCode}`, {
+    const response = await axios.get(`${BASE_URL}${jobName}`, {
       headers: {
         'Authorization': `Basic ${auth}`,
       },

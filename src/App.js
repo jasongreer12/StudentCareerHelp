@@ -5,7 +5,7 @@ import OULogo from './images.png';
 import TULogo from './tu_law_logo.png';
 import UCOLogo from './images-2.png';
 import RSULogo from './images-3.png';
-import Form from 'react-bootstrap/Form';
+import {Form} from 'react-bootstrap';
 import { useState } from 'react';
 
 function App() {

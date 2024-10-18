@@ -1,13 +1,16 @@
 import axios from 'axios';
-
 import dotenv from 'dotenv';
 
 dotenv.config()
 
-const USERNAME = process.env.ONET_USERNAME  // Replace with your O*NET API username
-const PASSWORD = process.env.ONET_PASSWORD  // Replace with your O*NET API password
-const BASE_URL = 'https://services.onetcenter.org/v1.9/ws/mnm/careers/';  // Base URL for career reports
+//const USERNAME = process.env.ONET_USERNAME  // Replace with your O*NET API username
+//const PASSWORD = process.env.ONET_PASSWORD  // Replace with your O*NET API password
 
+const USERNAME = 'studentcareerhelp';
+const PASSWORD = '9245jug';
+
+
+const BASE_URL = 'https://services.onetcenter.org/v1.9/ws/mnm/careers/';  // Base URL for career reports
 // Function to fetch career overview for a given O*NET-SOC Code
 const fetchCareerOverview = async (jobName) => {
   const auth = Buffer.from(`${USERNAME}:${PASSWORD}`).toString('base64');
@@ -18,6 +21,12 @@ const fetchCareerOverview = async (jobName) => {
         'Authorization': `Basic ${auth}`,
       },
     });
+    // const response = await axios.get(`${BASE_URL}${jobName}`, {
+    //   mode: 'no-cors',
+    //   headers: {
+    //     'Authorization': `Basic ${auth}`,
+    //   },
+    // });
 
     console.log('Career Overview:', response.data);
     return response.data;

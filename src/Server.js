@@ -1,6 +1,6 @@
 import odbc from 'odbc';
 import express from 'express';
-import cors from 'cors';// Import cors
+import cors from 'cors'; // Import cors
 
 import fetchCareerOverview from './Backend/api.js';  // Import from api.js
 
@@ -8,23 +8,17 @@ import fetchCareerOverview from './Backend/api.js';  // Import from api.js
 const app = express();
 const port = 3000;
 
-app.get('/filter', async (req, res) => {
+app.get('/filter', async (req, res) => { // need to set up to handle 
   try {
-    const selectedJob = req.query.job || '';
-    const connection = await odbc.connect(connString);
-    const queryString = `
-      SELECT JobName, JobSalary, JobDescription 
-      FROM [JobTable] 
-      WHERE JobName LIKE '%${selectedJob}%';
-    `;
-    const dbResult = await connection.query(queryString);
-    await connection.close();
+    //const selectedJob = req.query.job || '';
+    // for dev purposes ::
+    const selectedJob = "15-1252.00"; // must be double quote not single 
 
     // Fetch O*NET data
     const apiResult = await fetchCareerOverview(selectedJob);
     console.log(`Selected job:, ${selectedJob}`);
     // Combine and return data
-    const combinedResult = { dbData: dbResult, apiData: apiResult };
+    const combinedResult = { apiData: apiResult };
     res.json(combinedResult);
   } catch (error) {
     console.error('Error fetching job data:', error);
@@ -36,7 +30,7 @@ app.get('/filter', async (req, res) => {
 
 // Enable CORS for all routes
 app.use(cors({
-  origin: '*', // Allow all origins
+  origin: 'http://localhost:3001', // Allow all origins
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow these methods
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'] // Allow these headers
 }));
@@ -98,10 +92,12 @@ const states = [
 
 
 
-app.get('/', async (req, res) => {
+app.get('/getJobInfo', async (req, res) => {
+
   try {
+    const job = req.query.job || '';
     const connection = await odbc.connect(connString);
-    const queryString = "SELECT JobName, JobSalary, JobDescription FROM [JobTable] WHERE JobName LIKE '%Software%';";
+    const queryString = `SELECT JobName, JobSalary, JobDescription FROM [JobTable] WHERE JobName LIKE '%${job}%';`;
     const result = await connection.query(queryString);
     await connection.close();
     res.json(result);

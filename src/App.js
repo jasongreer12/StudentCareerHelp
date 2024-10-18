@@ -75,12 +75,14 @@ function App() {
           major: selectedMajor,
           job: selectedJob
         }).toString();
+        if (selectedState != "Choose" && selectedSchool != "Choose" && selectedMajor != "Choose" && selectedJob != "Choose") { // need to set this up to also pass job code in query string
+          const response = await fetch(`http://localhost:3000/getJobInfo?${queryParams}`);
+          console.log(queryParams);
+          const data = await response.json();
+          setJobsData(data);
+          console.log(data);
+        }
 
-        const response = await fetch(`http://localhost:3000/filter?${queryParams}`);
-        console.log(queryParams);
-        const data = await response.json();
-        setJobsData(data);
-        console.log(data);
       } catch (err) {
         setError(err.message);
       }
@@ -92,7 +94,12 @@ function App() {
   }, [selectedState, selectedSchool, selectedMajor, selectedJob]); // Dependencies for filter effect
 
 
-
+function getJobCode(jobName) {
+  switch (jobName) {
+    case "Software Engineering": 
+      return 15-1252.00;
+  }
+}
 
   return (
     <div className="App">
@@ -104,7 +111,7 @@ function App() {
           <div className="col-md-12">
             <label className="form-label" for="inputGroupSelect01" style={{ fontWeight: '700' }}>State:</label>
             <Form.Select id="inputGroupSelect01" size="lg" className="form-select" value={selectedState}
-              onChange={(e) => setSelectedSchool(e.target.value)}>
+              onChange={(e) => setSelectedState(e.target.value)}>
               <option value="Choose" disabled selected>Choose your state</option>
               {states.map(option => (
                 <option key={option.value} value={option.value}>

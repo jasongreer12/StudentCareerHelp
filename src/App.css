@@ -1,31 +1,9 @@
-#selectContainer {
-  background-color: #f3f3f3 ;
-  max-width: 380px;
-  min-height: 100vh;
-  float: left;
-}
-
+/* Logo and title styling */
 .logoID {
   height: 20vh;
-  object-fit: cover;
-  width: 100%;
-  filter: brightness(50%);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.form-label {
-  font-size: large !important;
-  font-weight: 700;
-}
-
-
-.App-link {
-  color: #61dafb;
+  object-fit: fit;
+  width: 50%;
+  filter: brightness(40%);
 }
 
 #appTitle {
@@ -38,17 +16,90 @@
   word-spacing: 6px;
   color: rgb(255, 255, 255);
   text-shadow: rgb(0, 0, 0) 2px 5px 11px;
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Center horizontally and vertically */
-  z-index: 1; /* Ensure title appears above the logo */
+  margin-top: 20px;
 }
 
-#jobInfoContainer {
-  background-color: #f3f3f3 ;
-  max-width: 380px;
-  min-height: 60vh;
-  margin-top: 30px;
-  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+/* Main layout */
+.main-layout {
+  display: flex;
+  justify-content: space-between;
+  height: 100%; /* Ensure full height usage */
 }
+
+/* Left sidebar (form selection) */
+.left-sidebar {
+  flex-basis: 30%;
+  background-color: #f3f3f3;
+  padding: 20px;
+  overflow-y: auto; /* Allow scroll if content overflows */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.left-sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+/* Right sidebar (job description and recommended classes) */
+.right-sidebar {
+  flex-basis: 70%;
+  padding: 20px;
+  overflow-y: auto; /* Allows scroll for large content */
+  background-color: rgba(255, 255, 255, 0.9); /* Slight transparency to pop the content */
+}
+
+/* Flexbox for job description and recommended classes */
+.job-description-classes {
+  display: flex; /* Use flexbox to align items side by side */
+  justify-content: space-between; /* Space between left and right sections */
+  align-items: flex-start; /* Align items to the top */
+}
+
+.job-description {
+  width: 50%; /* Adjust width as needed */
+  margin-right: 20px; /* Space between job description and classes */
+}
+
+.recommended-classes {
+  width: 50%; /* Adjust width as needed */
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+/* General Heading Styling */
+h2 {
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+
+.App {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+}
+
+.classes-job-description {
+  display: flex; /* Flexbox layout for side-by-side alignment */
+  justify-content: space-between; /* Space between the two sections */
+  align-items: flex-start; /* Align items to the top */
+}
+
+.recommended-classes {
+  width: 50%; /* Left: Recommended Classes */
+  margin-right: 20px; /* Add space to the right */
+}
+
+.job-description {
+  width: 50%; /* Right: Job Description */
+}
+

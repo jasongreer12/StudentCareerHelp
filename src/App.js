@@ -650,7 +650,7 @@ function App() {
       case 'Business Intelligence Analysts':
       case 'Computer Programmers':
       case 'Computer Systems Analysts':
-      case 'Computer Systems Engineer/Architects':
+      case 'Computer Systems Engineers/Architects':
       case 'Computer User Support Specialists':
       case 'Software Developers':
       case 'Software Quality Assurance Analysts and Testers':

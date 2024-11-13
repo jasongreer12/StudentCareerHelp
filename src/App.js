@@ -168,9 +168,9 @@ function App() {
       ],
       spring: [
         { name: "CS 2133", link: "http://catalog.okstate.edu/search/?P=CS%202133" },
-        { name: "Humanities", link: "" },
         { name: "MATH 2163", link: "http://catalog.okstate.edu/search/?P=MATH%202163" },
-        { name: "Lab Science", link: "" },
+        { name: "Humanities" },
+        { name: "Lab Science" }
       ],
     },
     junior: {
@@ -185,8 +185,8 @@ function App() {
         { name: "CS 3613", link: "http://catalog.okstate.edu/search/?P=CS%203613" },
         { name: "CS 3513", link: "http://catalog.okstate.edu/search/?P=CS%203513" },
         { name: "CS 3363", link: "http://catalog.okstate.edu/search/?P=CS%203363" },
-        { name: "Electives" },
         { name: "CS 4433", link: "http://catalog.okstate.edu/search/?P=CS%204433" },
+        { name: "Electives" }
       ],
     },
     senior: {
@@ -236,7 +236,7 @@ function App() {
         { name: "CS 2133", link: "http://catalog.okstate.edu/search/?P=CS%202133" },
         { name: "Humanities", link: "" },
         { name: "MATH 2163", link: "http://catalog.okstate.edu/search/?P=MATH%202163" },
-        { name: "Lab Science", link: "" },
+        { name: "Lab Science" },
       ],
     },
     junior: {
@@ -251,8 +251,8 @@ function App() {
         { name: "CS 3613", link: "http://catalog.okstate.edu/search/?P=CS%203613" },
         { name: "CS 3513", link: "http://catalog.okstate.edu/search/?P=CS%203513" },
         { name: "CS 3363", link: "http://catalog.okstate.edu/search/?P=CS%203363" },
-        { name: "Electives" },
         { name: "CS 4433", link: "http://catalog.okstate.edu/search/?P=CS%204433" },
+        { name: "Electives" }
       ],
     },
     senior: {
@@ -278,7 +278,7 @@ function App() {
       fall: [
         { name: "MATH 2144 - Calculus I", link: "http://catalog.okstate.edu/search/?search=MATH+2144+-+Calculus+I" },
         { name: "CS 1103 - Computer Science I (A)", link: "http://catalog.okstate.edu/search/?P=CS%201103" },
-        { name: "ENGL 113", link: "http://catalog.okstate.edu/search/?P=ENGL%201113" },
+        { name: "ENGL 1113", link: "http://catalog.okstate.edu/search/?P=ENGL%201113" },
         { name: "SPCH 2713", link: "http://catalog.okstate.edu/search/?search=SPCH+2713" },
         { name: "General Education courses" },
       ],
@@ -302,7 +302,7 @@ function App() {
         { name: "CS 2133", link: "http://catalog.okstate.edu/search/?P=CS%202133" },
         { name: "Humanities", link: "" },
         { name: "MATH 2163", link: "http://catalog.okstate.edu/search/?P=MATH%202163" },
-        { name: "Lab Science", link: "" },
+        { name: "Lab Science" },
       ],
     },
     junior: {
@@ -317,8 +317,8 @@ function App() {
         { name: "CS 3613", link: "http://catalog.okstate.edu/search/?P=CS%203613" },
         { name: "CS 3513", link: "http://catalog.okstate.edu/search/?P=CS%203513" },
         { name: "CS 3363", link: "http://catalog.okstate.edu/search/?P=CS%203363" },
-        { name: "Electives" },
         { name: "CS 4433", link: "http://catalog.okstate.edu/search/?P=CS%204433" },
+        { name: "Electives" }
       ],
     },
     senior: {
@@ -682,6 +682,10 @@ function App() {
     }
   }
 
+  const currencyFormat = (num) => {
+    return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+
   return (
     <div className="App" style={{ backgroundImage: `url(${getBackgroundImage()})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <h1 id="appTitle">Student Career Helper</h1>
@@ -816,7 +820,7 @@ function App() {
                           ))}
                         </ul>
                         <p><strong>Education required:</strong> {jobsData.education}</p>
-                        <p><strong>Average Salary:</strong> ${jobsData.outlook.salary.annual_median}</p>
+                        <p><strong>Average Salary:</strong> {currencyFormat(jobsData.outlook.salary.annual_median)}</p>
                       </div>
                     </div>
                   ) : (

@@ -1,0 +1,203 @@
+  {
+    "name": "Computer Science (CS)",
+    "children": [
+        {
+            "name": "Math 1513 College Algebra",
+              "children":[{
+                
+                    "name": "CS 1113 Computer Science I (A)",
+                    "prerequisites": [
+                      "MATH 1513 or higher"
+                    ],
+                    "children": [
+                      {
+                        "name": "CS 2133 Computer Science II",
+                        "prerequisites": [
+                          "CS 1113"
+                        ],
+                        "children": [
+                          {
+                            "name": "CS 2433 C/C++ Programming",
+                            "prerequisites": [
+                                {
+                              "name":"CS 1113"
+                                }
+                            ],
+                            "children": []
+                          },
+                          {
+                            "name": "CS 4783 Machine Learning",
+                            "prerequisites": [
+                              "CS 4343 or CS 3353",
+                              "MATH 3013"
+                            ],
+                            "children": []
+                          },
+                          {
+                            "name": "CS 3653 Discrete Mathematics",
+                            "prerequisites": [
+                              "MATH 2144"
+                            ],
+                            "children": [
+                              {
+                                "name": "CS 3613 Theoretical Foundations of Computing",
+                                "prerequisites": [
+                                  "CS 2133",
+                                  "CS 3653"
+                                ],
+                                "children": []
+                              },
+                              {
+                                "name": "CS 4183 Video Game Design",
+                                "prerequisites": [
+                                  "CS 2133",
+                                  "CS 3653"
+                                ],
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "name": "CS 4623 Introduction to Cyber Physical Systems",
+                            "prerequisites": [
+                              "CS 2133"
+                            ],
+                            "children": []
+                          },
+                          {
+                            "name": "CS 2351 Unix Programming",
+                            "prerequisites": [
+                              "CS 1113 or EET 2303"
+                            ],
+                            "children": []
+                          },
+                          {
+                            "name": "CS 3443 Computer Systems",
+                            "prerequisites": [
+                              "CS 2133"
+                            ],
+                            
+                            "children": [
+                              {
+                                "name": "CS 3030 Industrial Practice",
+                                "prerequisites": [
+                                  "CS 3443",
+                                  "MATH 2144"
+                                ],
+                                "children": []
+                              },
+                              {
+                                "name": "CS 3363 Organization of Programming Languages",
+                                "prerequisites": [
+                                  "CS 2133",
+                                  "CS 3443 or ECEN 3213"
+                                ],
+                                "children": []
+                              },
+                              {
+                                "name": "CS 4523 Cloud Computing and Distributed Systems",
+                                "prerequisites": [
+                                  "CS 3443",
+                                  "CS 4343 or CS 3353"
+                                ],
+                                "children": []
+                              },
+                              {
+                                "name": "CS 4273 Software Engineering",
+                                "prerequisites": [
+                                  "CS 2133",
+                                  "CS 3653",
+                                  "CS 3443 or ECEN 3213"
+                                ],
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "name": "CS 3353 Data Structures and Algorithm Analysis I",
+                            "prerequisites": [
+                              "CS 2133",
+                              "CS 3653"
+                            ],
+                            
+                            "children": [
+                              {
+                                "name": "CS 4143 Computer Graphics",
+                                "prerequisites": [
+                                  "MATH 2163",
+                                  "CS 3353"
+                                ],
+                                "children": []
+                              },
+                              {
+                                "name": "CS 4523 Cloud Computing and Distributed Systems",
+                                "prerequisites": [
+                                  "CS 3443",
+                                  "CS 4343 or CS 3353"
+                                ],
+                                "children": []
+                              },
+                              {
+                                "name": "CS 4793 Artificial Intelligence I",
+                                "prerequisites": [
+                                  "CS 3353"
+                                ],
+                                "children": []
+                              },
+                              {
+                                "name": "CS 4983 Senior Capstone Project",
+                                "prerequisites": [
+                                  "CS 3353",
+                                  "CS 3363",
+                                  "CS 3443 or ECEN 3213"
+                                ],
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "name": "CS 3363 Organization of Programming Languages",
+                            "prerequisites": [
+                              "CS 2133",
+                              "CS 3443 or ECEN 3213"
+                            ],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  
+                  {
+                    "name": "CS 4513 Introduction to Numerical Analysis",
+                    "prerequisites": [
+                      "MATH 2233",
+                      "MATH 3013",
+                      "Knowledge of programming or consent of instructor"
+                    ],
+                    "children": []
+                  },
+                  {
+                  "name": "Math 1813 Prep for Calculus",
+                  "prerequisites":[
+                    "MATH 1513 or higher"
+                  ],
+                  "children" :[{
+                      "name": "Math 2144 Calculus I",
+                      "children":[{
+                        "name": "Math 2144 Calculus II",
+                        "children":[{
+                        "name": "Math 2144 Calculus III"},
+                        {"name": "Math 3013 Linear Algebra"}
+                        
+                      ]
+                      }]
+                  }]
+              }
+              ]
+            }
+      
+    ]
+  }
+  
+  

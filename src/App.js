@@ -5,6 +5,9 @@ import OULogo from './images.png';
 import TULogo from './tu_law_logo.png';
 import UCOLogo from './images-2.png';
 import RSULogo from './images-3.png';
+import D3TreeGraph from './D3TreeGraph.js';
+import "./Modal.css"
+import { Modal, Button } from 'react-bootstrap';
 import { Form } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 
@@ -18,6 +21,7 @@ function App() {
   const [selectedSchool, setSelectedSchool] = useState('Choose');
   const [selectedMajor, setSelectedMajor] = useState('Choose');
   const [selectedJob, setSelectedJob] = useState('Choose');
+  const[showTree, setTree] = useState(false);
   const [error, setError] = useState(null);
 
   const stateOptions = [
@@ -616,10 +620,6 @@ function App() {
     setSelectedSchool(e.target.value);
   };
 
-
-
-
-
   // Event handler for major selection
   const handleMajorChange = (e) => {
     setSelectedMajor(e.target.value);
@@ -732,8 +732,6 @@ function App() {
               ))}
             </Form.Select>
 
-
-
           </div>
 
           <div className="form-group">
@@ -758,8 +756,6 @@ function App() {
 
         </div>
 
-
-
         {/* Right side: Recommended classes and Job description */}
         <div className="right-sidebar">
           {selectedState != "Choose" && selectedSchool != "Choose" && selectedMajor != "Choose" && selectedJob != "Choose"
@@ -772,6 +768,36 @@ function App() {
                 </div>
                 <div className="job-description">
                   <h2>Recommended classes</h2>
+                  
+                  <>
+                  {/* Button to open the modal */}
+                    <Button variant="primary" onClick={() => setTree(true)}>
+                        Open CS Hierarchy Tree
+                    </Button>
+
+                  {/* Modal Component */}
+                  <Modal 
+                    show={showTree} 
+                    onHide={() => setTree(false)} 
+                    dialogClassName="custom-modal" // Custom class for the modal
+                    size = 'xl'
+                  >
+                  <Modal.Header closeButton>
+                    <Modal.Title>CS Hierarchy Tree</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <D3TreeGraph />
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setTree(false)}>
+                        Close
+                    </Button>
+                  </Modal.Footer>
+                  </Modal>
+
+                  </>
+               
+
                   <ul>
                     {Object.entries(getSelectedJobCourses()).map(([year, semesters]) => (
                       <li key={year}>
@@ -793,6 +819,7 @@ function App() {
                       </li>
                     ))}
                   </ul>
+                
                 </div>
                 <div className="recommended-classes">
                   <h2>Job description</h2>
@@ -830,7 +857,12 @@ function App() {
             : null} {/* if options arent selected, display nothing*/}
         </div>
       </div>
+      <div className="App">
+            
+           
+        </div>
     </div >
+    
 
   );
 }

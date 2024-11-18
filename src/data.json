@@ -19,9 +19,7 @@
                           {
                             "name": "CS 2433 C/C++ Programming",
                             "prerequisites": [
-                                {
-                              "name":"CS 1113"
-                                }
+                                "CS 1113"
                             ],
                             "children": []
                           },
@@ -167,16 +165,6 @@
                       }
                     ]
                   },
-                  
-                  {
-                    "name": "CS 4513 Introduction to Numerical Analysis",
-                    "prerequisites": [
-                      "MATH 2233",
-                      "MATH 3013",
-                      "Knowledge of programming or consent of instructor"
-                    ],
-                    "children": []
-                  },
                   {
                   "name": "Math 1813 Prep for Calculus",
                   "prerequisites":[
@@ -184,11 +172,36 @@
                   ],
                   "children" :[{
                       "name": "Math 2144 Calculus I",
+                      "prerequisites":[
+                        "Math 1513"
+                      ],
                       "children":[{
-                        "name": "Math 2144 Calculus II",
+                        "name": "Math 2153 Calculus II",
+                        "prerequisites":[
+                            "Math 2144"
+                        ],
                         "children":[{
-                        "name": "Math 2144 Calculus III"},
-                        {"name": "Math 3013 Linear Algebra"}
+                        "name": "Math 2163 Calculus III",
+                        "prerequisites":[
+                            "Math 2153"
+                        ]
+                        },
+                        {
+                            "name": "Math 3013 Linear Algebra",
+                            "prerequisites":[
+                                "Math 2153"
+                            ],
+                            "children" :[{
+                                
+                                    "name": "CS 4513 Introduction to Numerical Analysis",
+                                    "prerequisites": [
+                                      "MATH 2233",
+                                      "MATH 3013"
+                                    ],
+                                    "children": []
+                                  }
+                            ]
+                        }
                         
                       ]
                       }]

@@ -1,16 +1,2 @@
-svg {
-    background: #f9f9f9;
-  }
-  
-  text {
-    font-family: "Arial, sans-serif";
-  }
-  
-  circle {
-    transition: fill 0.3s ease;
-  }
-  
-  path {
-    transition: stroke 0.3s ease;
-  }
+
   

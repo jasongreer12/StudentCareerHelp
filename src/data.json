@@ -23,11 +23,11 @@
                             ],
                             "children": []
                           },
+                          
                           {
-                            "name": "CS 4783 Machine Learning",
+                            "name": "CS 2351 Unix Programming",
                             "prerequisites": [
-                              "CS 4343 or CS 3353",
-                              "MATH 3013"
+                              "CS 1113 or EET 2303"
                             ],
                             "children": []
                           },
@@ -37,6 +37,54 @@
                               "MATH 2144"
                             ],
                             "children": [
+                              {
+                                "name": "CS 3353 Data Structures and Algorithm Analysis I",
+                                "prerequisites": [
+                                  "CS 2133",
+                                  "CS 3653"
+                                ],
+                                
+                                "children": [
+                                  {
+                                    "name": "CS 4783 Machine Learning",
+                                    "prerequisites": [
+                                      "CS 4343 or CS 3353",
+                                      "MATH 3013"
+                                    ],
+                                    "children": []
+                                  },
+                                  {
+                                    "name": "CS 4143 Computer Graphics",
+                                    "prerequisites": [
+                                      "MATH 2163",
+                                      "CS 3353"
+                                    ],
+                                    "children": []
+                                  },
+                                  {
+                                    "name": "CS 4523 Cloud Computing and Distributed Systems",
+                                    "prerequisites": [
+                                      "CS 3443",
+                                      "CS 4343 or CS 3353"
+                                    ],
+                                    "children": []
+                                  },
+                                  {
+                                    "name": "CS 4793 Artificial Intelligence I",
+                                    "prerequisites": [
+                                      "CS 3353"
+                                    ],
+                                    "children": []
+                                  },
+                                  {
+                                    "name": "CS 4983 Senior Capstone Project",
+                                    "prerequisites": [
+                                      "CS 3353",
+                                      "CS 3363",
+                                      "CS 3443 or ECEN 3213"
+                                    ],
+                                    "children": []
+                                  },
                               {
                                 "name": "CS 3613 Theoretical Foundations of Computing",
                                 "prerequisites": [
@@ -63,27 +111,12 @@
                             "children": []
                           },
                           {
-                            "name": "CS 2351 Unix Programming",
-                            "prerequisites": [
-                              "CS 1113 or EET 2303"
-                            ],
-                            "children": []
-                          },
-                          {
                             "name": "CS 3443 Computer Systems",
                             "prerequisites": [
                               "CS 2133"
                             ],
                             
                             "children": [
-                              {
-                                "name": "CS 3030 Industrial Practice",
-                                "prerequisites": [
-                                  "CS 3443",
-                                  "MATH 2144"
-                                ],
-                                "children": []
-                              },
                               {
                                 "name": "CS 3363 Organization of Programming Languages",
                                 "prerequisites": [
@@ -92,6 +125,15 @@
                                 ],
                                 "children": []
                               },
+                              {
+                                "name": "CS 3030 Industrial Practice",
+                                "prerequisites": [
+                                  "CS 3443",
+                                  "MATH 2144"
+                                ],
+                                "children": []
+                              },
+                              
                               {
                                 "name": "CS 4523 Cloud Computing and Distributed Systems",
                                 "prerequisites": [
@@ -110,56 +152,8 @@
                                 "children": []
                               }
                             ]
-                          },
-                          {
-                            "name": "CS 3353 Data Structures and Algorithm Analysis I",
-                            "prerequisites": [
-                              "CS 2133",
-                              "CS 3653"
-                            ],
-                            
-                            "children": [
-                              {
-                                "name": "CS 4143 Computer Graphics",
-                                "prerequisites": [
-                                  "MATH 2163",
-                                  "CS 3353"
-                                ],
-                                "children": []
-                              },
-                              {
-                                "name": "CS 4523 Cloud Computing and Distributed Systems",
-                                "prerequisites": [
-                                  "CS 3443",
-                                  "CS 4343 or CS 3353"
-                                ],
-                                "children": []
-                              },
-                              {
-                                "name": "CS 4793 Artificial Intelligence I",
-                                "prerequisites": [
-                                  "CS 3353"
-                                ],
-                                "children": []
-                              },
-                              {
-                                "name": "CS 4983 Senior Capstone Project",
-                                "prerequisites": [
-                                  "CS 3353",
-                                  "CS 3363",
-                                  "CS 3443 or ECEN 3213"
-                                ],
-                                "children": []
-                              }
+                          }
                             ]
-                          },
-                          {
-                            "name": "CS 3363 Organization of Programming Languages",
-                            "prerequisites": [
-                              "CS 2133",
-                              "CS 3443 or ECEN 3213"
-                            ],
-                            "children": []
                           }
                         ]
                       }

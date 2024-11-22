@@ -5,7 +5,7 @@
   width: 50%;
   filter: brightness(40%);
 }
-
+/*
 #appTitle {
   font-family: "Arial Black", Gadget, sans-serif;
   font-weight: bold;
@@ -18,20 +18,38 @@
   text-shadow: rgb(0, 0, 0) 2px 5px 11px;
   margin-top: 20px;
 }
+*/
+#appTitle {
+  position: relative;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+  color: white;
+  background-color: black;
+  -webkit-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
 
 /* Main layout */
 .main-layout {
   display: flex;
   justify-content: space-between;
-  height: 100%; /* Ensure full height usage */
+  height: 96%; /* Ensure full height usage */
+  --bs-gutter-x: -.5rem !important;
 }
 
 /* Left sidebar (form selection) */
 .left-sidebar {
-  flex-basis: 30%;
+  flex-basis: 22%;
   background-color: #f3f3f3;
   padding: 20px;
   overflow-y: auto; /* Allow scroll if content overflows */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .form-group {
@@ -45,10 +63,12 @@
 
 /* Right sidebar (job description and recommended classes) */
 .right-sidebar {
-  flex-basis: 70%;
+  flex-basis: 78%;
   padding: 20px;
   overflow-y: auto; /* Allows scroll for large content */
   background-color: rgba(255, 255, 255, 0.9); /* Slight transparency to pop the content */
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 /* Flexbox for job description and recommended classes */
@@ -103,3 +123,19 @@ h2 {
   width: 50%; /* Right: Job Description */
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+  ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+  }
+  

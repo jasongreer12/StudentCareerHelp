@@ -106,7 +106,7 @@ async function getJobZoneDescr(zone) {
 
 
 
-const connString = 'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\\Users\\keega\\OneDrive\\Desktop\\StudentHelperDB1.accdb;PWD=rustyL1d';
+const connString = 'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\\Users\\jason\\classprojects\\projects\\my-app\\studentcareerhelp\\src\\StudentHelperDB1.accdb;PWD=rustyL1d';
 
 const states = [
   { value: "AL", label: "Alabama" },

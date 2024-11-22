@@ -687,7 +687,7 @@ function App() {
   }
 
   return (
-    <div className="App" style={{ backgroundImage: `url(${getBackgroundImage()})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <div className="App" style={{ backgroundImage: `url(${getBackgroundImage()})`, backgroundSize: 'cover', backgroundPosition: 'center', overflow: 'hidden' }}>
       <h1 id="appTitle">Student Career Helper</h1>
 
 
@@ -771,12 +771,12 @@ function App() {
                   </div>
                 </div>
                 <div className="job-description">
-                  <h2>Recommended classes</h2>
+                  <h2>Recommended Classes</h2>
                   
                   <>
                   {/* Button to open the modal */}
-                    <Button variant="primary" onClick={() => setTree(true)}>
-                        Open CS Hierarchy Tree
+                    <Button variant="secondary" onClick={() => setTree(true)}>
+                        View Class Hierarchy
                     </Button>
 
                   {/* Modal Component */}
@@ -826,7 +826,7 @@ function App() {
                 
                 </div>
                 <div className="recommended-classes">
-                  <h2>Job description</h2>
+                  <h2>Job Description</h2>
                   {jobsData ? ( // if jobs data is not empty, populate container with info
                     <div className="row">
                       <div className="col-md-12">

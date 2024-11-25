@@ -115,13 +115,14 @@ h2 {
 }
 
 .recommended-classes {
+  display: block;
+  text-align: justify;
+  justify-content: center;
   width: 50%; /* Left: Recommended Classes */
   margin-right: 20px; /* Add space to the right */
+  
 }
 
-.job-description {
-  width: 50%; /* Right: Job Description */
-}
 
 ::-webkit-scrollbar {
   width: 10px;

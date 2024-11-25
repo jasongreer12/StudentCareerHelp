@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import jsonData from './data.json';
+import {Button } from 'react-bootstrap';
 import "./D3Tree.css";
 
 const D3TreeGraph = () => {
@@ -72,9 +73,22 @@ const D3TreeGraph = () => {
       .scaleExtent([0.5, 5])
       .on("zoom", (event) => gElement.attr("transform", event.transform));
     svg.call(zoom);
+
+    
   }, []);
 
-  return <svg ref={svgRef}></svg>;
+  return (
+    <div>
+    <div className="d3-tree-h1">
+        <h1>Computer Science Hierarchy Tree</h1>
+      
+    </div>
+    <svg ref={svgRef}></svg>
+    </div>
+  );
 };
+
+
+
 
 export default D3TreeGraph;

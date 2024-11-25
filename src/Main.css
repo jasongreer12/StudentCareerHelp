@@ -28,7 +28,7 @@
   font-weight: 800;
   font-size: 40px;
   color: white;
-  background-color: black;
+  background-color: #6c757d;
   -webkit-transition: all 0.4s ease 0s;
   -o-transition: all 0.4s ease 0s;
   transition: all 0.4s ease 0s;
@@ -115,14 +115,13 @@ h2 {
 }
 
 .recommended-classes {
-  display: block;
-  text-align: justify;
-  justify-content: center;
   width: 50%; /* Left: Recommended Classes */
   margin-right: 20px; /* Add space to the right */
-  
 }
 
+.job-description {
+  width: 50%; /* Right: Job Description */
+}
 
 ::-webkit-scrollbar {
   width: 10px;

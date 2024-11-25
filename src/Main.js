@@ -871,17 +871,17 @@ function Main() {
                 </div>
                 <div className="job-description">
                   <h2>Recommended classes</h2>
-                  
-                  
+
+
                   <Button variant="secondary" href="/D3TreeGraph" target='_blank'>
                     Open Class Hierarchy
                   </Button>
 
-                  
-                 
 
-                  
-                    
+
+
+
+
 
                   <ul>
                     {Object.entries(getSelectedJobCourses()).map(([year, semesters]) => (
@@ -904,7 +904,7 @@ function Main() {
                       </li>
                     ))}
                   </ul>
-                
+
                 </div>
                 <div className="recommended-classes">
                   <h2 className='recommended-classes-h2'>Job description</h2>
@@ -943,11 +943,11 @@ function Main() {
         </div>
       </div>
       <div className="App">
-            
-           
-        </div>
+
+
+      </div>
     </div >
-    
+
 
   );
 }

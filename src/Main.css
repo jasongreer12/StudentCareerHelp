@@ -38,8 +38,11 @@
 .main-layout {
   display: flex;
   justify-content: space-between;
-  height: 96%; /* Ensure full height usage */
-  --bs-gutter-x: -.5rem !important;
+  height: 90%; /* Ensure full height usage */
+  flex-basis: 30%;
+  background-color: #f3f3f3;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 /* Left sidebar (form selection) */
@@ -66,9 +69,7 @@
   flex-basis: 78%;
   padding: 20px;
   overflow-y: auto; /* Allows scroll for large content */
-  background-color: rgba(255, 255, 255, 0.9); /* Slight transparency to pop the content */
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  background-color:#f3f3f3;
 }
 
 /* Flexbox for job description and recommended classes */
@@ -117,25 +118,59 @@ h2 {
 .recommended-classes {
   width: 50%; /* Left: Recommended Classes */
   margin-right: 20px; /* Add space to the right */
+  
 }
 
 .job-description {
   width: 50%; /* Right: Job Description */
 }
 
-::-webkit-scrollbar {
-  width: 10px;
+.sidebar-paragraph {
+  font-size: 14px;
+  color: #555;
+  margin-top: 20px; /* Add some spacing above the paragraph */
+  line-height: 1.6; /* Improve readability */
+  background-color: #ffffff; /* Optional: background color for contrast */
+  padding: 10px; /* Optional: Add padding for better appearance */
+  border-radius: 5px; /* Optional: Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+.resource-content {
+  align-content: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #fff rgb(255, 255, 255);;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex; /* Flexbox layout for side-by-side alignment */
+  justify-content: space-between; /* Space between the two sections */
+  align-items: flex-start; 
+  display: flex;
+  width: 100%;
+  background-color:#f3f3f3;
+  text-align: center;
+
 }
 
-::-webkit-scrollbar-thumb {
-  background: #888;
+.app-footer {
+  background-color: orange;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 14px;
 }
 
-  ::-webkit-scrollbar-thumb:hover {
-      background: #555;
-  }
-  
+.app-footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.app-footer a:hover {
+  text-decoration: underline;
+}
+
+

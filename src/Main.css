@@ -85,6 +85,7 @@
 
 .recommended-classes {
   width: 50%; /* Adjust width as needed */
+  text-align: justify;
 }
 
 ul {

@@ -28,7 +28,7 @@
   font-weight: 800;
   font-size: 40px;
   color: white;
-  background-color: #6c757d;
+  background-color: orange;
   -webkit-transition: all 0.4s ease 0s;
   -o-transition: all 0.4s ease 0s;
   transition: all 0.4s ease 0s;
@@ -86,6 +86,7 @@
 
 .recommended-classes {
   width: 50%; /* Adjust width as needed */
+  text-align: justify;
 }
 
 ul {

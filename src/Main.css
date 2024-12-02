@@ -28,7 +28,7 @@
   font-weight: 800;
   font-size: 40px;
   color: white;
-  background-color: #6c757d;
+  background-color: orange;
   -webkit-transition: all 0.4s ease 0s;
   -o-transition: all 0.4s ease 0s;
   transition: all 0.4s ease 0s;
@@ -38,11 +38,8 @@
 .main-layout {
   display: flex;
   justify-content: space-between;
-  height: 90%; /* Ensure full height usage */
-  flex-basis: 30%;
-  background-color: #f3f3f3;
-  padding: 20px;
-  overflow-y: auto;
+  height: 96%; /* Ensure full height usage */
+  --bs-gutter-x: -.5rem !important;
 }
 
 /* Left sidebar (form selection) */
@@ -69,7 +66,9 @@
   flex-basis: 78%;
   padding: 20px;
   overflow-y: auto; /* Allows scroll for large content */
-  background-color:#f3f3f3;
+  background-color: rgba(255, 255, 255, 0.9); /* Slight transparency to pop the content */
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 /* Flexbox for job description and recommended classes */
@@ -173,4 +172,15 @@ h2 {
   text-decoration: underline;
 }
 
+.hierarchyBtn {
+  background-color: orange !important;
+  border-color: orange !important;
+  color: white !important; /* Optional: Set text color */
+  transition: background-color 0.3s ease, background-color 0.3s ease !important; /* Smooth transition */
+}
 
+.hierarchyBtn:hover {
+  background-color: #d39117 !important;
+  color: white !important;
+  transform: scale(1.07);
+}
